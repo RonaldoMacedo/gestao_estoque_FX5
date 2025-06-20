@@ -71,7 +71,7 @@ public class TelaPrincipalController implements Initializable {
 	
 	@FXML
 	public void onMenuItemListarProdutosAction() {
-		System.out.println("Lista de produtos");
+		loadView("/gui/ListaProduto.fxml");
 	}
 	
 	private synchronized void loadView(String absoluteName) {
