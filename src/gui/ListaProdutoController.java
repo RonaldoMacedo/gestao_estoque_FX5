@@ -23,7 +23,7 @@ public class ListaProdutoController implements Initializable {
 	}
 	
 	private void initializeNodes() {
-		tableColumnIdProduto.setCellValueFactory(new PropertyValueFactory<>("idProduto"));
+		tableColumnIdProduto.setCellValueFactory(new PropertyValueFactory<>("idProduto"));	
 		tableColumnDescricaoInterna.setCellValueFactory(new PropertyValueFactory<>("descricaoInterna"));
 		tableColumnGrupo.setCellValueFactory(new PropertyValueFactory<>("grupo"));
 		tableColumnSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
