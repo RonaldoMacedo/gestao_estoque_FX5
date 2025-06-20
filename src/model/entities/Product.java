@@ -1,11 +1,13 @@
 package model.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import model.enums.Grupo;
 import model.enums.Situacao;
 
-public class Product {
+public class Product implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Integer idProduto;
 	private String descricaoInterna;
@@ -81,6 +83,12 @@ public class Product {
 			return false;
 		Product other = (Product) obj;
 		return Objects.equals(descricaoInterna, other.descricaoInterna) && Objects.equals(idProduto, other.idProduto);
+	}
+
+	@Override
+	public String toString() {
+		return "Product [idProduto=" + idProduto + ", descricaoInterna=" + descricaoInterna + ", grupo=" + grupo
+				+ ", situacao=" + situacao + ", saldo=" + saldo + "]";
 	}
 
 }
