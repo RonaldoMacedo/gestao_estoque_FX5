@@ -7,7 +7,7 @@ import java.util.Objects;
 import model.enums.Grupo;
 import model.enums.Situacao;
 
-public class Product implements Serializable{
+public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer idProduto;
@@ -17,11 +17,13 @@ public class Product implements Serializable{
 	private Situacao situacao;
 	private Integer saldo;
 	
+	private Item itens;
+	
 	public Product() {
 		
 	}
 
-	public Product(Integer idProduto, String descricaoInterna, Date dataCadastro, Grupo grupo, Situacao situacao, Integer saldo) {
+	public Product(Integer idProduto, String descricaoInterna, Date dataCadastro, Grupo grupo, Situacao situacao, Integer saldo, Item itens) {
 		super();
 		this.idProduto = idProduto;
 		this.descricaoInterna = descricaoInterna;
@@ -29,6 +31,7 @@ public class Product implements Serializable{
 		this.grupo = grupo;
 		this.situacao = situacao;
 		this.saldo = saldo;
+		this.setItens(itens);
 	}
 
 	public Integer getIdProduto() {
@@ -78,6 +81,14 @@ public class Product implements Serializable{
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
+	
+	public Item getItens() {
+		return itens;
+	}
+
+	public void setItens(Item itens) {
+		this.itens = itens;
+	}
 
 	@Override
 	public int hashCode() {
@@ -101,6 +112,5 @@ public class Product implements Serializable{
 		return "Product [idProduto=" + idProduto + ", descricaoInterna=" + descricaoInterna + ", grupo=" + grupo
 				+ ", situacao=" + situacao + ", saldo=" + saldo + "]";
 	}
-
 
 }
