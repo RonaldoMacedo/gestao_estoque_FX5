@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 
 import model.enums.Grupo;
@@ -11,6 +12,7 @@ public class Product implements Serializable{
 	
 	private Integer idProduto;
 	private String descricaoInterna;
+	private Date dataCadastro;
 	private Grupo grupo;
 	private Situacao situacao;
 	private Integer saldo;
@@ -19,10 +21,11 @@ public class Product implements Serializable{
 		
 	}
 
-	public Product(Integer idProduto, String descricaoInterna, Grupo grupo, Situacao situacao, Integer saldo) {
+	public Product(Integer idProduto, String descricaoInterna, Date dataCadastro, Grupo grupo, Situacao situacao, Integer saldo) {
 		super();
 		this.idProduto = idProduto;
 		this.descricaoInterna = descricaoInterna;
+		this.setDataCadastro(dataCadastro);
 		this.grupo = grupo;
 		this.situacao = situacao;
 		this.saldo = saldo;
@@ -67,6 +70,14 @@ public class Product implements Serializable{
 	public void setSaldo(Integer saldo) {
 		this.saldo = saldo;
 	}
+	
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 
 	@Override
 	public int hashCode() {
@@ -90,5 +101,6 @@ public class Product implements Serializable{
 		return "Product [idProduto=" + idProduto + ", descricaoInterna=" + descricaoInterna + ", grupo=" + grupo
 				+ ", situacao=" + situacao + ", saldo=" + saldo + "]";
 	}
+
 
 }
