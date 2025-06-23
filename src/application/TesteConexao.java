@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import db.DB;
+import db.DbIntegrityException;
 
 public class TesteConexao {
 
@@ -15,19 +16,17 @@ public class TesteConexao {
 		
 		try {
 			conn = DB.getConnection();
-			ps = conn.prepareStatement("update produto "
-					+ "set situacao = ? "
+			ps = conn.prepareStatement("delete from produto "
 					+ "where "
-					+ "(id_produto = ?)");
-			ps.setString(1, "ativo");
-			ps.setInt(2, 184);
+					+ "id_produto = ?");
+			ps.setInt(1, 184);
 			
 			int rowsAffected = ps.executeUpdate();
 			
 			System.out.println("Done! Rows affected: " + rowsAffected);
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			throw new DbIntegrityException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(ps);
