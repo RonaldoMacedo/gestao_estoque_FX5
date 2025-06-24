@@ -53,10 +53,11 @@ public class TesteConexao {
 		
 		System.out.println();
 		
-		System.out.println("--------Test 6: Inserindo um novo produto----------");
-		Product newProduct = new Product(null, "Colesterol HDL", new Date(0), Grupo.Tecnica, Situacao.Ativo, null, null);
-		productDao.insert(newProduct);
-		System.out.println("Success! New id = " + newProduct.getIdProduto());
+		System.out.println("--------Test 7: Alterando um produto----------");
+		Product prod = productDao.findById(185);
+		prod.setSituacao(Situacao.Inativo);
+		productDao.update(prod);
+		System.out.println("Update completed");
 	}
 
 }
