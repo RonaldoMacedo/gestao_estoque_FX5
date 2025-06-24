@@ -3,6 +3,7 @@ package model.dao;
 import java.util.List;
 
 import model.entities.Item;
+import model.entities.Product;
 
 public interface ItemDao {
 	
@@ -11,5 +12,6 @@ public interface ItemDao {
 	void deleteByid(Integer id);
 	Item findById(Integer id);
 	List<Item> findAll();
+	List<Item> findByProduct(Product product);
 
 }
