@@ -16,7 +16,7 @@ public class TesteConexao {
 		ItemDao itemDao = DaoFactory.createItemDao();
 		
 		System.out.println("--------Test 1: buscar produto por codigo----------");
-		Product product = productDao.findById(87);
+		Product product = productDao.findById(7);
 		System.out.println(product);
 		
 		System.out.println();
@@ -30,7 +30,7 @@ public class TesteConexao {
 		System.out.println();
 		
 		System.out.println("--------Test 3: buscar item por codigo----------");
-		Item item = itemDao.findById(7);
+		Item item = itemDao.findById(10);
 		System.out.println(item);
 
 	}
