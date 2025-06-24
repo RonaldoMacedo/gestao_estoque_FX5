@@ -27,6 +27,8 @@ public class TesteConexao {
 			System.out.println(obj);
 		}
 		
+		System.out.println();
+		
 		System.out.println("--------Test 3: buscar item por codigo----------");
 		Item item = itemDao.findById(7);
 		System.out.println(item);

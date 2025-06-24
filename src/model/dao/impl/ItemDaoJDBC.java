@@ -47,11 +47,12 @@ public class ItemDaoJDBC implements ItemDao {
 		try {
 			ps = conn.prepareStatement("select * from item i inner join\r\n"
 							+ "produto p on(i.fk_id_produto = p.id_produto)\r\n"
-							+ "where id_produto = ?");
+							+ "where id_item = ?");
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				Item obj = instantiateItem(rs);
+				Product prod = instantiateProduct(rs);
+				Item obj = instantiateItem(rs, prod);
 				return obj;
 			}
 			return null;
@@ -63,7 +64,7 @@ public class ItemDaoJDBC implements ItemDao {
 		}
 	}
 
-	private Item instantiateItem(ResultSet rs) throws SQLException {
+	private Product instantiateProduct(ResultSet rs) throws SQLException {
 		Product prod = new Product();
 		prod.setIdProduto(rs.getInt("id_produto"));
 		prod.setDescricaoInterna(rs.getString("descricao_interna"));
@@ -71,7 +72,10 @@ public class ItemDaoJDBC implements ItemDao {
 		prod.setGrupo(Grupo.valueOf(rs.getString("grupo")));
 		prod.setSituacao(Situacao.valueOf(rs.getString("situacao")));
 		prod.setSaldo(rs.getInt("saldo"));
-		
+		return prod;
+	}
+
+	private Item instantiateItem(ResultSet rs, Product prod) throws SQLException {
 		Item obj = new Item();
 		obj.setIdItem(rs.getInt("id_item"));
 		obj.setDescricao(rs.getString("descricao"));
