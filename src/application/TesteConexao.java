@@ -1,9 +1,7 @@
 package application;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import gui.ListaProdutoController;
 import model.dao.DaoFactory;
 import model.dao.ItemDao;
 import model.dao.ProductDao;
@@ -40,6 +38,14 @@ public class TesteConexao {
 		System.out.println("--------Test 4: buscar item por produto----------");
 		Product prod = new Product(7, null, null, null, null, null, item);
 		List<Item> list2 = itemDao.findByProduct(prod);
+		for(Item obj: list2) {
+			System.out.println(obj);
+		}
+		
+		System.out.println();
+		
+		System.out.println("--------Test 5: buscar todos os itens----------");
+		list2 = itemDao.findAll();
 		for(Item obj: list2) {
 			System.out.println(obj);
 		}
