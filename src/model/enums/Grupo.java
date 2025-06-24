@@ -6,6 +6,6 @@ public enum Grupo {
 	Limpeza,
 	Escritorio,
 	Tecnica,
-	Cafe
+	Copa
 
 }

@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -75,8 +78,34 @@ public class ProductDaoJDBC implements ProductDao {
 
 	@Override
 	public List<Product> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = conn.prepareStatement("select * from produto");
+			rs = ps.executeQuery();
+			List<Product> list = new ArrayList<>();
+			Map<Integer, Product> map = new HashMap<>();
+			
+			while(rs.next()) {
+				Product obj = map.get(rs.getInt("id_produto"));
+				
+				if(obj == null) {
+					obj = instantiateProduct(rs);
+					map.put(rs.getInt("id_produto"), obj);
+				}
+				
+				obj = instantiateProduct(rs);
+				list.add(obj);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(ps);
+			DB.closeResultSet(rs);
+		}
 	}
 
 }
