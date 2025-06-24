@@ -10,8 +10,8 @@ public class TesteConexao {
 		
 		ProductDao productDao = DaoFactory.createProductDao();
 		
-		Product product = productDao.findById(1);
-		
+		System.out.println("--------Test 1: buscar produto por codigo----------");
+		Product product = productDao.findById(87);
 		System.out.println(product);
 
 	}

@@ -48,13 +48,7 @@ public class ProductDaoJDBC implements ProductDao {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				Product obj = new Product();
-				obj.setIdProduto(rs.getInt("id_produto"));
-				obj.setDescricaoInterna(rs.getString("descricao_interna"));
-				obj.setDataCadastro(rs.getDate("data_cadastro"));
-				obj.setGrupo(Grupo.valueOf(rs.getString("grupo")));
-				obj.setSituacao(Situacao.valueOf(rs.getString("situacao")));
-				obj.setSaldo(rs.getInt("saldo"));
+				Product obj = instantiateProduct(rs);
 				return obj;
 			}
 			return null;
@@ -66,6 +60,17 @@ public class ProductDaoJDBC implements ProductDao {
 			DB.closeStatement(ps);
 			DB.closeResultSet(rs);
 		}
+	}
+
+	private Product instantiateProduct(ResultSet rs) throws SQLException {
+		Product obj = new Product();
+		obj.setIdProduto(rs.getInt("id_produto"));
+		obj.setDescricaoInterna(rs.getString("descricao_interna"));
+		obj.setDataCadastro(rs.getDate("data_cadastro"));
+		obj.setGrupo(Grupo.valueOf(rs.getString("grupo")));
+		obj.setSituacao(Situacao.valueOf(rs.getString("situacao")));
+		obj.setSaldo(rs.getInt("saldo"));
+		return obj;
 	}
 
 	@Override
