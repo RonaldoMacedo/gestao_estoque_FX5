@@ -1,12 +1,13 @@
 package application;
 
-import java.util.List;
+import java.sql.Date;
 
 import model.dao.DaoFactory;
 import model.dao.ItemDao;
 import model.dao.ProductDao;
-import model.entities.Item;
 import model.entities.Product;
+import model.enums.Grupo;
+import model.enums.Situacao;
 
 public class TesteConexao {
 
@@ -15,7 +16,7 @@ public class TesteConexao {
 		ProductDao productDao = DaoFactory.createProductDao();
 		ItemDao itemDao = DaoFactory.createItemDao();
 		
-		System.out.println("--------Test 1: buscar produto por codigo----------");
+		/* System.out.println("--------Test 1: buscar produto por codigo----------");
 		Product product = productDao.findById(7);
 		System.out.println(product);
 		
@@ -48,8 +49,14 @@ public class TesteConexao {
 		list2 = itemDao.findAll();
 		for(Item obj: list2) {
 			System.out.println(obj);
-		}
-
+		} */
+		
+		System.out.println();
+		
+		System.out.println("--------Test 6: Inserindo um novo produto----------");
+		Product newProduct = new Product(null, "Colesterol HDL", new Date(0), Grupo.Tecnica, Situacao.Ativo, null, null);
+		productDao.insert(newProduct);
+		System.out.println("Success! New id = " + newProduct.getIdProduto());
 	}
 
 }
