@@ -87,7 +87,18 @@ public class ProductDaoJDBC implements ProductDao {
 
 	@Override
 	public void deleteByid(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("delete from produto where id_produto = ?");
+			ps.setInt(1, id);
+			ps.executeUpdate();
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(ps);
+		}
 		
 	}
 

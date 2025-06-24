@@ -1,6 +1,7 @@
 package application;
 
 import java.sql.Date;
+import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.ItemDao;
@@ -12,6 +13,8 @@ import model.enums.Situacao;
 public class TesteConexao {
 
 	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
 		
 		ProductDao productDao = DaoFactory.createProductDao();
 		ItemDao itemDao = DaoFactory.createItemDao();
@@ -53,11 +56,13 @@ public class TesteConexao {
 		
 		System.out.println();
 		
-		System.out.println("--------Test 7: Alterando um produto----------");
-		Product prod = productDao.findById(185);
-		prod.setSituacao(Situacao.Inativo);
-		productDao.update(prod);
-		System.out.println("Update completed");
+		System.out.println("--------Test 8: Deletando um produto----------");
+		System.out.println("Digite um código de produto para deletar:");
+		int id = sc.nextInt();
+		productDao.deleteByid(id);
+		System.out.println("Delete completed!");
+		
+		sc.close();
 	}
 
 }
