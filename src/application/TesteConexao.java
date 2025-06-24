@@ -3,7 +3,9 @@ package application;
 import java.util.List;
 
 import model.dao.DaoFactory;
+import model.dao.ItemDao;
 import model.dao.ProductDao;
+import model.entities.Item;
 import model.entities.Product;
 
 public class TesteConexao {
@@ -11,6 +13,7 @@ public class TesteConexao {
 	public static void main(String[] args) {
 		
 		ProductDao productDao = DaoFactory.createProductDao();
+		ItemDao itemDao = DaoFactory.createItemDao();
 		
 		System.out.println("--------Test 1: buscar produto por codigo----------");
 		Product product = productDao.findById(87);
@@ -23,6 +26,10 @@ public class TesteConexao {
 		for(Product obj : list) {
 			System.out.println(obj);
 		}
+		
+		System.out.println("--------Test 3: buscar item por codigo----------");
+		Item item = itemDao.findById(7);
+		System.out.println(item);
 
 	}
 
