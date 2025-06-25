@@ -1,6 +1,7 @@
-package model.dao.impl;
+	package model.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +34,7 @@ public class ProductDaoJDBC implements ProductDao {
 					+ "	values(?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getDescricaoInterna());
-			ps.setDate(2, obj.getDataCadastro());
+			ps.setDate(2, (Date) new java.util.Date(obj.getDataCadastro().getTime()));
 			ps.setString(3, obj.getGrupo().toString());
 			ps.setString(4, obj.getSituacao().toString());
 			
@@ -68,7 +69,7 @@ public class ProductDaoJDBC implements ProductDao {
 					+ "set descricao_interna=?, data_cadastro=?, grupo=?, situacao=? "
 					+ "where id_produto=?");
 			ps.setString(1, obj.getDescricaoInterna());
-			ps.setDate(2, obj.getDataCadastro());
+			ps.setDate(2, (Date) new java.util.Date(obj.getDataCadastro().getTime()));
 			ps.setString(3, obj.getGrupo().toString());
 			ps.setString(4, obj.getSituacao().toString());
 			ps.setInt(5, obj.getIdProduto());
