@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import application.Main;
 import gui.util.Alerts;
@@ -62,7 +63,7 @@ public class TelaPrincipalController implements Initializable {
 	
 	@FXML
 	public void onMenuItemSobreAction() {
-		loadView("/gui/Sobre.fxml");
+		loadView("/gui/Sobre.fxml", x -> {});
 	}
 	
 	//*************************************************************************************************************************************************************
@@ -72,12 +73,15 @@ public class TelaPrincipalController implements Initializable {
 	
 	@FXML
 	public void onMenuItemListarProdutosAction() {
-		loadView2("/gui/ListaProduto.fxml");
+		loadView("/gui/ListaProduto.fxml", (ListaProdutoController controller) -> {
+			controller.setProductService(new ProductService());
+			controller.updateTableView();
+		});
 	}
 	
 	//*************************************************************************************************************************************************************
 	
-	private synchronized void loadView(String absoluteName) {
+	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			VBox newVBox = loader.load();
@@ -90,27 +94,8 @@ public class TelaPrincipalController implements Initializable {
 			telaPrincipalVBox.getChildren().add(mainMenu);
 			telaPrincipalVBox.getChildren().addAll(newVBox.getChildren());
 			
-		}catch(IOException e) {
-			Alerts.showAlert("IOException", "Error loading view", e.getMessage(), AlertType.ERROR);
-		}
-	}
-	
-	private synchronized void loadView2(String absoluteName) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-			VBox newVBox = loader.load();
-			
-			Scene mainScene = Main.getMainScene();
-			VBox telaPrincipalVBox = (VBox) ((ScrollPane)mainScene.getRoot()).getContent();
-			
-			Node mainMenu = telaPrincipalVBox.getChildren().get(0);
-			telaPrincipalVBox.getChildren().clear();
-			telaPrincipalVBox.getChildren().add(mainMenu);
-			telaPrincipalVBox.getChildren().addAll(newVBox.getChildren());
-			
-			ListaProdutoController controller = loader.getController();
-			controller.setProductService(new ProductService());
-			controller.updateTableView();
+			T controller = loader.getController();
+			initializingAction.accept(controller);
 			
 		}catch(IOException e) {
 			Alerts.showAlert("IOException", "Error loading view", e.getMessage(), AlertType.ERROR);
