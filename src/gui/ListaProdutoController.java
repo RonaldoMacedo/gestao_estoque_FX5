@@ -61,11 +61,11 @@ public class ListaProdutoController implements Initializable {
 	//*************************************************************
 	
 	@FXML
-	private Button btVoltar;
+	private Button btNovo;
 	
 	@FXML
-	public void onBtVoltarAction() {
-		System.out.println("Voltar");
+	public void onBtNovoAction() {
+		System.out.println("Novo");
 	}
 	
 	//*************************************************************
