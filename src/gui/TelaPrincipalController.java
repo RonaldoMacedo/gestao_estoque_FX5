@@ -29,26 +29,6 @@ public class TelaPrincipalController implements Initializable {
 	//*************************************************************************************************************************************************************
 	
 	@FXML
-	private MenuItem menuItemNovoProduto;
-	
-	@FXML
-	public void onMenuItemNovoProdutoAction() {
-		System.out.println("Novo produto");
-	}
-	
-	//*************************************************************************************************************************************************************
-	
-	@FXML
-	private MenuItem menuItemNovoItem;
-	
-	@FXML
-	public void onMenuItemNovoItemAction() {
-		System.out.println("Novo item");
-	}
-	
-	//*************************************************************************************************************************************************************
-	
-	@FXML
 	private MenuItem menuItemNovoFornecedor;
 	
 	@FXML

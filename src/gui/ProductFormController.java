@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.entities.Product;
-import model.enums.Grupo;
 
 public class ProductFormController implements Initializable {
 	
