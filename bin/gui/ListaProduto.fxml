@@ -28,9 +28,10 @@
         <columns>
           <TableColumn fx:id="tableColumnIdProduto" prefWidth="75.0" text="Código" />
           <TableColumn fx:id="tableColumnDescricaoInterna" prefWidth="152.79998779296875" text="Descrição interna" />
-            <TableColumn fx:id="tableColumnGrupo" prefWidth="80.79998779296875" text="Grupo" />
-            <TableColumn fx:id="tableColumnSituacao" prefWidth="66.39996337890625" text="Situação" />
-            <TableColumn fx:id="tableColumnSaldo" prefWidth="102.4000244140625" text="Saldo" />
+            <TableColumn fx:id="tableColumnDataCadastro" prefWidth="121.60003662109375" text="Data de cadastro" />
+            <TableColumn fx:id="tableColumnGrupo" prefWidth="58.39996337890625" text="Grupo" />
+            <TableColumn fx:id="tableColumnSituacao" prefWidth="110.39996337890625" text="Situação" />
+            <TableColumn fx:id="tableColumnSaldo" prefWidth="80.80010986328125" text="Saldo" />
         </columns>
       </TableView>
    </children>

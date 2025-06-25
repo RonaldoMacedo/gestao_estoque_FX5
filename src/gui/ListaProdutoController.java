@@ -1,6 +1,7 @@
 package gui;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
 import application.Main;
@@ -25,6 +26,7 @@ public class ListaProdutoController implements Initializable {
 	private void initializeNodes() {
 		tableColumnIdProduto.setCellValueFactory(new PropertyValueFactory<>("idProduto"));	
 		tableColumnDescricaoInterna.setCellValueFactory(new PropertyValueFactory<>("descricaoInterna"));
+		tableColumnDataCadastro.setCellValueFactory(new PropertyValueFactory<>("dataCadastro"));
 		tableColumnGrupo.setCellValueFactory(new PropertyValueFactory<>("grupo"));
 		tableColumnSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
 		tableColumnSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
@@ -43,6 +45,9 @@ public class ListaProdutoController implements Initializable {
 	
 	@FXML
 	private TableColumn<Product, String> tableColumnDescricaoInterna;
+	
+	@FXML
+	private TableColumn<Product, Date> tableColumnDataCadastro;
 	
 	@FXML
 	private TableColumn<Product, Grupo> tableColumnGrupo;
