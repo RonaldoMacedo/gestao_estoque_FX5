@@ -2,9 +2,12 @@ package gui;
 
 import java.net.URL;
 import java.sql.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,13 +18,18 @@ import javafx.stage.Stage;
 import model.entities.Product;
 import model.enums.Grupo;
 import model.enums.Situacao;
+import model.services.ProductService;
 
 public class ListaProdutoController implements Initializable {
+	
+	private ProductService service;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
 	}
+	
+	private ObservableList<Product> obsList;
 	
 	private void initializeNodes() {
 		tableColumnIdProduto.setCellValueFactory(new PropertyValueFactory<>("idProduto"));	
@@ -33,6 +41,8 @@ public class ListaProdutoController implements Initializable {
 		
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewProduct.prefHeightProperty().bind(stage.heightProperty());
+		
+		
 	}
 
 	//*************************************************************
@@ -69,5 +79,18 @@ public class ListaProdutoController implements Initializable {
 	}
 	
 	//*************************************************************
+	
+	public void setProductService(ProductService service) {
+		this.service = service;
+	}
+	
+	public void updateTableView() {
+		if(service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		List<Product> list = service.findAll();
+		obsList = FXCollections.observableArrayList(list);
+		tableViewProduct.setItems(obsList);
+	}
 
 }

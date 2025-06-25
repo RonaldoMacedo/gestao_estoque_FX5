@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.services.ProductService;
 
 public class TelaPrincipalController implements Initializable {
 
@@ -71,7 +72,7 @@ public class TelaPrincipalController implements Initializable {
 	
 	@FXML
 	public void onMenuItemListarProdutosAction() {
-		loadView("/gui/ListaProduto.fxml");
+		loadView2("/gui/ListaProduto.fxml");
 	}
 	
 	//*************************************************************************************************************************************************************
@@ -88,6 +89,28 @@ public class TelaPrincipalController implements Initializable {
 			telaPrincipalVBox.getChildren().clear();
 			telaPrincipalVBox.getChildren().add(mainMenu);
 			telaPrincipalVBox.getChildren().addAll(newVBox.getChildren());
+			
+		}catch(IOException e) {
+			Alerts.showAlert("IOException", "Error loading view", e.getMessage(), AlertType.ERROR);
+		}
+	}
+	
+	private synchronized void loadView2(String absoluteName) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			VBox newVBox = loader.load();
+			
+			Scene mainScene = Main.getMainScene();
+			VBox telaPrincipalVBox = (VBox) ((ScrollPane)mainScene.getRoot()).getContent();
+			
+			Node mainMenu = telaPrincipalVBox.getChildren().get(0);
+			telaPrincipalVBox.getChildren().clear();
+			telaPrincipalVBox.getChildren().add(mainMenu);
+			telaPrincipalVBox.getChildren().addAll(newVBox.getChildren());
+			
+			ListaProdutoController controller = loader.getController();
+			controller.setProductService(new ProductService());
+			controller.updateTableView();
 			
 		}catch(IOException e) {
 			Alerts.showAlert("IOException", "Error loading view", e.getMessage(), AlertType.ERROR);
