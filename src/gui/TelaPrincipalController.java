@@ -23,34 +23,14 @@ public class TelaPrincipalController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	//*************************************************************************************************************************************************************
-	
-	@FXML
-	private MenuItem menuItemNovoFornecedor;
-	
-	@FXML
-	public void onMenuItemNovoFornecedorAction() {
-		System.out.println("Novo fornecedor");
-	}
-	
-	//*************************************************************************************************************************************************************
-	
-	@FXML
-	private MenuItem menuItemSobre;
-	
-	@FXML
-	public void onMenuItemSobreAction() {
-		loadView("/gui/Sobre.fxml", x -> {});
-	}
-	
-	//*************************************************************************************************************************************************************
-	
+
 	@FXML
 	private MenuItem menuItemListarProdutos;
-	
+
 	@FXML
 	public void onMenuItemListarProdutosAction() {
 		loadView("/gui/ListaProduto.fxml", (ListaProdutoController controller) -> {
@@ -58,26 +38,87 @@ public class TelaPrincipalController implements Initializable {
 			controller.updateTableView();
 		});
 	}
+
+	//*************************************************************************************************************************************************************
+
+	@FXML
+	private MenuItem menuItemListarItens;
+	
+	@FXML
+	public void onMenuItemListarItensAction() {
+		System.out.println("Lista de itens");
+	}
 	
 	//*************************************************************************************************************************************************************
 	
+	@FXML
+	private MenuItem menuItemListarFornecedores;
+
+	@FXML
+	public void onMenuItemListarFornecedoresAction() {
+		System.out.println("Lista de fornecedores");
+	}
+
+	//*************************************************************************************************************************************************************
+
+	@FXML
+	private MenuItem menuItemListarUsuarios;
+	
+	@FXML
+	public void onMenuItemListarUsuarios() {
+		System.out.println("Lista de usuários");
+	}
+	
+	//*************************************************************************************************************************************************************
+	
+	@FXML
+	private MenuItem menuItemNovoPedidoDeCompra;
+	
+	@FXML
+	public void onMenuItemNovoPedidoDeCompraAction() {
+		System.out.println("Novo pedido de compra");
+	}
+	
+	//*************************************************************************************************************************************************************
+	
+	@FXML
+	private MenuItem menuItemNovoPedidoInterno;
+	
+	@FXML
+	public void onMenuItemNovoPedidoInternoAction() {
+		System.out.println("Novo pedido interno");
+	}
+	
+	//*************************************************************************************************************************************************************
+	
+	@FXML
+	private MenuItem menuItemSobre;
+
+	@FXML
+	public void onMenuItemSobreAction() {
+		loadView("/gui/Sobre.fxml", x -> {
+		});
+	}
+
+	//*************************************************************************************************************************************************************
+
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			VBox newVBox = loader.load();
-			
+
 			Scene mainScene = Main.getMainScene();
-			VBox telaPrincipalVBox = (VBox) ((ScrollPane)mainScene.getRoot()).getContent();
-			
+			VBox telaPrincipalVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
+
 			Node mainMenu = telaPrincipalVBox.getChildren().get(0);
 			telaPrincipalVBox.getChildren().clear();
 			telaPrincipalVBox.getChildren().add(mainMenu);
 			telaPrincipalVBox.getChildren().addAll(newVBox.getChildren());
-			
+
 			T controller = loader.getController();
 			initializingAction.accept(controller);
-			
-		}catch(IOException e) {
+
+		} catch (IOException e) {
 			Alerts.showAlert("IOException", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
 	}

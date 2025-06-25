@@ -17,11 +17,31 @@
                         <MenuItem fx:id="menuItemListarProdutos" mnemonicParsing="false" onAction="#onMenuItemListarProdutosAction" text="Listar produtos" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Item">
+                    <items>
+                      <MenuItem fx:id="menuItemListarItens" mnemonicParsing="false" onAction="#onMenuItemListarItensAction" text="Listar itens" />
+                    </items>
+                  </Menu>
                 <Menu mnemonicParsing="false" text="Fornecedor">
                   <items>
-                    <MenuItem fx:id="menuItemNovoFornecedor" mnemonicParsing="false" onAction="#onMenuItemNovoFornecedorAction" text="Novo Fornecedor" />
+                    <MenuItem fx:id="menuItemListarFornecedores" mnemonicParsing="false" onAction="#onMenuItemListarFornecedoresAction" text="Listar fornecedores" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Usuario">
+                    <items>
+                      <MenuItem fx:id="menuItemListarUsuarios" mnemonicParsing="false" onAction="#onMenuItemListarUsuarios" text="Listar usuários" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Pedido de compra">
+                    <items>
+                      <MenuItem fx:id="menuItemNovoPedidoDeCompra" mnemonicParsing="false" onAction="#onMenuItemNovoPedidoDeCompraAction" text="Novo" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Pedido interno">
+                    <items>
+                      <MenuItem fx:id="menuItemNovoPedidoInterno" mnemonicParsing="false" onAction="#onMenuItemNovoPedidoInternoAction" text="Novo" />
+                    </items>
+                  </Menu>
                 <Menu mnemonicParsing="false" text="Ajuda">
                   <items>
                     <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="Sobre" />
