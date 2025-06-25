@@ -24,7 +24,7 @@ public class TelaPrincipalController implements Initializable {
 		
 	}
 	
-	//**********************************************************************
+	//*************************************************************************************************************************************************************
 	
 	@FXML
 	private MenuItem menuItemNovoProduto;
@@ -34,7 +34,7 @@ public class TelaPrincipalController implements Initializable {
 		System.out.println("Novo produto");
 	}
 	
-	//**********************************************************************
+	//*************************************************************************************************************************************************************
 	
 	@FXML
 	private MenuItem menuItemNovoItem;
@@ -44,7 +44,7 @@ public class TelaPrincipalController implements Initializable {
 		System.out.println("Novo item");
 	}
 	
-	//***********************************************************************
+	//*************************************************************************************************************************************************************
 	
 	@FXML
 	private MenuItem menuItemNovoFornecedor;
@@ -54,7 +54,7 @@ public class TelaPrincipalController implements Initializable {
 		System.out.println("Novo fornecedor");
 	}
 	
-	//***********************************************************************
+	//*************************************************************************************************************************************************************
 	
 	@FXML
 	private MenuItem menuItemSobre;
@@ -64,7 +64,7 @@ public class TelaPrincipalController implements Initializable {
 		loadView("/gui/Sobre.fxml");
 	}
 	
-	//***********************************************************************
+	//*************************************************************************************************************************************************************
 	
 	@FXML
 	private MenuItem menuItemListarProdutos;
@@ -73,6 +73,8 @@ public class TelaPrincipalController implements Initializable {
 	public void onMenuItemListarProdutosAction() {
 		loadView("/gui/ListaProduto.fxml");
 	}
+	
+	//*************************************************************************************************************************************************************
 	
 	private synchronized void loadView(String absoluteName) {
 		try {
