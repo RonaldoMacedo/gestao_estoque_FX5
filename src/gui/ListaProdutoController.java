@@ -96,10 +96,8 @@ public class ListaProdutoController implements Initializable, DataChangeListener
 	private Button btAtualizar;
 	
 	@FXML
-	public void onBtAtualizarAction(ActionEvent event) {
-		Stage parentStage = Utils.currentStage(event);
-		Product obj = new Product();
-		createDialogForm2(obj, "/gui/UpdateProductForm.fxml", parentStage);
+	public void onBtAtualizarAction() {
+		System.out.println("Atualizar produto");
 	}
 	
 	public void setProductService(ProductService service) {
@@ -116,30 +114,6 @@ public class ListaProdutoController implements Initializable, DataChangeListener
 	}
 	
 	private void createDialogForm(Product obj, String absoluteName, Stage parentStage) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-			Pane pane = loader.load();
-			
-			ProductFormController controller = loader.getController();
-			controller.setProduct(obj);
-			controller.setProductService(new ProductService());
-			controller.subscribeDataChangeListener(this);
-			controller.updateFormData();
-			
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Digite os dados do produto");
-			dialogStage.setScene(new Scene(pane));
-			dialogStage.setResizable(false);
-			dialogStage.initOwner(parentStage);
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.showAndWait();
-		}
-		catch(IOException e) {
-			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
-		}
-	}
-	
-	private void createDialogForm2(Product obj, String absoluteName, Stage parentStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
