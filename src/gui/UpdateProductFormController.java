@@ -3,17 +3,25 @@ package gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gui.util.Constraints;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.entities.Product;
 
 public class UpdateProductFormController implements Initializable {
+	
+	private Product entity;
+	
+	public void setProduct(Product entnty) {
+		this.entity = entity;
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		// TODO Auto-generated method stub
+		initializeNodes();
 		
 	}
 	
@@ -51,6 +59,8 @@ public class UpdateProductFormController implements Initializable {
 	public void onBtSalvarAction() {
 		System.out.println("Salvar atualização");
 	}
+	
+	//*************************************************************************************************************************************************************
 
 	@FXML
 	private Button btCancelar;
@@ -61,5 +71,10 @@ public class UpdateProductFormController implements Initializable {
 	}
 	
 	//*************************************************************************************************************************************************************
+	
+	private void initializeNodes() {
+		Constraints.setTextFieldInteger(txtCodigo);
+		Constraints.setTextFieldMaxLength(txtDescricaoInterna, 200);
+	}
 
 }
