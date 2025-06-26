@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import model.enums.Situacao;
 
-public class Supplier {
+public class Fornecedor {
 	
 	private Integer idFornecedor;
 	private String razaoSocial;
@@ -14,11 +14,11 @@ public class Supplier {
 	private Date dataCadastro;
 	private Situacao situacao;
 	
-	public Supplier() {
+	public Fornecedor() {
 		
 	}
 
-	public Supplier(Integer idFornecedor, String razaoSocial, String apelido, String cnpj, Date dataCadastro,
+	public Fornecedor(Integer idFornecedor, String razaoSocial, String apelido, String cnpj, Date dataCadastro,
 			Situacao situacao) {
 		super();
 		this.idFornecedor = idFornecedor;
@@ -90,7 +90,7 @@ public class Supplier {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Supplier other = (Supplier) obj;
+		Fornecedor other = (Fornecedor) obj;
 		return Objects.equals(apelido, other.apelido) && Objects.equals(idFornecedor, other.idFornecedor);
 	}
 
