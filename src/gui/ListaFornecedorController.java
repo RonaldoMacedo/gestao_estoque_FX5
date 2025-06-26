@@ -2,9 +2,12 @@ package gui;
 
 import java.net.URL;
 import java.sql.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,8 +17,26 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.entities.Fornecedor;
 import model.enums.Situacao;
+import model.services.FornecedorService;
 
 public class ListaFornecedorController implements Initializable {
+	
+	private FornecedorService service;
+	
+	public void setFornecedorService(FornecedorService service) {
+		this.service = service;
+	}
+	
+	private ObservableList<Fornecedor> obsList;
+	
+	public void updateTableView() {
+		if(service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		List<Fornecedor> list = service.findAll();
+		obsList = FXCollections.observableArrayList(list);
+		tableViewFornecedor.setItems(obsList);
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {

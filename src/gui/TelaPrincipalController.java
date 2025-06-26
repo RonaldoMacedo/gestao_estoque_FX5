@@ -16,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.services.FornecedorService;
 import model.services.ProductService;
 
 public class TelaPrincipalController implements Initializable {
@@ -56,7 +57,10 @@ public class TelaPrincipalController implements Initializable {
 
 	@FXML
 	public void onMenuItemListarFornecedoresAction() {
-		loadView("/gui/ListaFornecedor.fxml", x -> {});
+		loadView("/gui/ListaFornecedor.fxml", (ListaFornecedorController controller) -> {
+			controller.setFornecedorService(new FornecedorService());
+			controller.updateTableView();
+		});
 	}
 
 	//*************************************************************************************************************************************************************
