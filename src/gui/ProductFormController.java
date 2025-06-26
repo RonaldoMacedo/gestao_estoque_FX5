@@ -1,10 +1,13 @@
 package gui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import db.DbException;
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
@@ -23,6 +26,7 @@ public class ProductFormController implements Initializable {
 	
 	private Product entity;
 	private ProductService service;
+	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 	
 	public void setProduct(Product entity) {
 		this.entity = entity;
@@ -30,6 +34,10 @@ public class ProductFormController implements Initializable {
 	
 	public void setProductService(ProductService service) {
 		this.service = service;
+	}
+	
+	public void subscribeDataChangeListener(DataChangeListener listener) {
+		dataChangeListeners.add(listener);
 	}
 
 	@Override
@@ -71,6 +79,7 @@ public class ProductFormController implements Initializable {
 		try {
 			entity = getFormData();
 			service.saveOrUpdate(entity);
+			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
 		}
 		catch(DbException e) {
@@ -78,6 +87,13 @@ public class ProductFormController implements Initializable {
 		}
 	}
 	
+	private void notifyDataChangeListeners() {
+		for(DataChangeListener listener : dataChangeListeners) {
+			listener.onDataChanged();
+		}
+		
+	}
+
 	private Product getFormData() {
 		Product obj = new Product();
 		obj.setIdProduto(Utils.tryParseToInt(txtCodigo.getText()));

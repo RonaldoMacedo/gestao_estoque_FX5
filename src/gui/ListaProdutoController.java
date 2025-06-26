@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -29,7 +30,7 @@ import model.enums.Grupo;
 import model.enums.Situacao;
 import model.services.ProductService;
 
-public class ListaProdutoController implements Initializable {
+public class ListaProdutoController implements Initializable, DataChangeListener {
 	
 	private ProductService service;
 
@@ -112,6 +113,7 @@ public class ListaProdutoController implements Initializable {
 			ProductFormController controller = loader.getController();
 			controller.setProduct(obj);
 			controller.setProductService(new ProductService());
+			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
@@ -125,6 +127,12 @@ public class ListaProdutoController implements Initializable {
 		catch(IOException e) {
 			Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
+	}
+
+	@Override
+	public void onDataChanged() {
+		updateTableView();
+		
 	}
 
 }
