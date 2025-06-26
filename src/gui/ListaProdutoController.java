@@ -55,7 +55,7 @@ public class ListaProdutoController implements Initializable, DataChangeListener
 		
 	}
 
-	//*************************************************************
+	//*************************************************************************************************************************************************************
 	
 	@FXML
 	private TableView<Product> tableViewProduct;
@@ -78,7 +78,7 @@ public class ListaProdutoController implements Initializable, DataChangeListener
 	@FXML
 	private TableColumn<Product, Integer> tableColumnSaldo;
 	
-	//*************************************************************
+	//*************************************************************************************************************************************************************
 	
 	@FXML
 	private Button btNovo;
@@ -90,7 +90,15 @@ public class ListaProdutoController implements Initializable, DataChangeListener
 		createDialogForm(obj, "/gui/ProductForm.fxml", parentStage);
 	}
 	
-	//*************************************************************
+	//*************************************************************************************************************************************************************
+	
+	@FXML
+	private Button btAtualizar;
+	
+	@FXML
+	public void onBtAtualizarAction() {
+		System.out.println("Atualizar produto");
+	}
 	
 	public void setProductService(ProductService service) {
 		this.service = service;
