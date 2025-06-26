@@ -34,7 +34,7 @@ public class ProductDaoJDBC implements ProductDao {
 					+ "	values(?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getDescricaoInterna());
-			ps.setDate(2, (Date) new java.util.Date(obj.getDataCadastro().getTime()));
+			ps.setDate(2, (Date) new java.sql.Date(obj.getDataCadastro().getTime()));
 			ps.setString(3, obj.getGrupo().toString());
 			ps.setString(4, obj.getSituacao().toString());
 			
