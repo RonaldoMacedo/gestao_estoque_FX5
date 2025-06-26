@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListaProdutoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListaProdutoController">
    <children>
-      <Label text="Produtos cadastrados">
+      <Label prefWidth="600.0" text="Produtos cadastrados">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -24,7 +24,7 @@
           <Button fx:id="btNovo" mnemonicParsing="false" onAction="#onBtNovoAction" text="Novo" />
         </items>
       </ToolBar>
-      <TableView fx:id="tableViewProduct" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewProduct" prefHeight="400.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="tableColumnIdProduto" prefWidth="75.0" text="Código" />
           <TableColumn fx:id="tableColumnDescricaoInterna" prefWidth="152.79998779296875" text="Descrição interna" />
