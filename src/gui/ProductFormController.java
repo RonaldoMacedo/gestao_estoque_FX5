@@ -4,7 +4,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import db.DbException;
 import gui.listeners.DataChangeListener;
@@ -16,10 +18,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Product;
 import model.enums.Grupo;
 import model.enums.Situacao;
+import model.exceptions.ValidationException;
 import model.services.ProductService;
 
 public class ProductFormController implements Initializable {
@@ -66,6 +70,18 @@ public class ProductFormController implements Initializable {
 	//*************************************************************************************************************************************************************
 	
 	@FXML
+	private Label lblErro;
+	
+	private void setErrorMessages(Map<String, String> errors) {
+		Set<String> fields = errors.keySet();
+		if(fields.contains("descricaoInterna")) {
+			lblErro.setText(errors.get("descricaoInterna"));
+		}
+	}
+	
+	//*************************************************************************************************************************************************************
+	
+	@FXML
 	private Button btSalvar;
 	
 	@FXML
@@ -85,6 +101,9 @@ public class ProductFormController implements Initializable {
 		catch(DbException e) {
 			Alerts.showAlert("Error saving product", null, e.getMessage(), AlertType.ERROR);
 		}
+		catch(ValidationException e) {
+			setErrorMessages(e.getErrors());
+		}
 	}
 	
 	private void notifyDataChangeListeners() {
@@ -96,8 +115,17 @@ public class ProductFormController implements Initializable {
 
 	private Product getFormData() {
 		Product obj = new Product();
+		ValidationException exception = new ValidationException("Validation error");
+		
 		obj.setIdProduto(Utils.tryParseToInt(txtCodigo.getText()));
+		
+		if(txtDescricaoInterna.getText() == null || txtDescricaoInterna.getText().trim().equals("")) {
+			exception.addError("descricaoInterna", "O nome do produto é obrigatório");
+		}
 		obj.setDescricaoInterna(txtDescricaoInterna.getText());
+		if(exception.getErrors().size() > 0) {
+			throw exception;
+		}
 		obj.setDataCadastro(new Date());
 		obj.setGrupo(Grupo.valueOf(txtGrupo.getText()));
 		obj.setSituacao(Situacao.valueOf(txtSituacao.getText()));
