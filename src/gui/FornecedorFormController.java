@@ -9,8 +9,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.entities.Fornecedor;
 
 public class FornecedorFormController implements Initializable {
+	
+	private Fornecedor entity;
+	
+	public void setFornecedor(Fornecedor entity) {
+		this.entity = entity;
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -75,4 +82,18 @@ public class FornecedorFormController implements Initializable {
 	}
 	
 	//*************************************************************************************************************************************************************
+	
+	public void updateFormData() {
+		if(entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+		txtIdFornecedor.setText(String.valueOf(entity.getIdFornecedor()));
+		txtRazaoSocial.setText(entity.getRazaoSocial());
+		txtApelido.setText(entity.getApelido());
+		txtCNPJ.setText(entity.getCnpj());
+		txtDataCadastro.setText(String.valueOf(entity.getDataCadastro()));
+		txtSituacao.setText(String.valueOf(entity.getSituacao()));
+	}
 }
+
+	

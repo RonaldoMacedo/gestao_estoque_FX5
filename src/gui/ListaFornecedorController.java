@@ -96,7 +96,8 @@ public class ListaFornecedorController implements Initializable {
 	@FXML
 	public void onBtNovoAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
-		createDialogForm("/gui/FornecedorForm.fxml", parentStage);
+		Fornecedor obj = new Fornecedor();
+		createDialogForm(obj, "/gui/FornecedorForm.fxml", parentStage);
 	}
 	
 	//************************************************************************************************************************************************************
@@ -111,10 +112,15 @@ public class ListaFornecedorController implements Initializable {
 	
 	//************************************************************************************************************************************************************
 
-	private void createDialogForm(String absoluteName, Stage parentStage) {
+	private void createDialogForm(Fornecedor obj, String absoluteName, Stage parentStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+			
+			FornecedorFormController controller = loader.getController();
+			controller.setFornecedor(obj);
+			controller.updateFormData();
+			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Digite os dados do fornecedor");
 			dialogStage.setScene(new Scene(pane));
