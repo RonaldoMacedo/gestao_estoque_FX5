@@ -2,9 +2,12 @@ package gui;
 
 import java.net.URL;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import db.DbException;
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
@@ -27,10 +30,20 @@ public class FornecedorFormController implements Initializable {
 		this.entity = entity;
 	}
 	
+	//*************************************************************************************************************************************************************
+	
 	private FornecedorService service;
 	
 	public void setFornecedorService(FornecedorService service) {
 		this.service = service;
+	}
+	
+	//*************************************************************************************************************************************************************
+	
+	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+	
+	public void subscribeDataChangeListener(DataChangeListener listener) {
+		dataChangeListeners.add(listener);
 	}
 
 	@Override
@@ -93,6 +106,7 @@ public class FornecedorFormController implements Initializable {
 		try {
 			entity = getFormData();
 			service.saveOrUpdate(entity);
+			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
 		}
 		catch(DbException e) {
@@ -100,6 +114,13 @@ public class FornecedorFormController implements Initializable {
 		}
 	}
 	
+	private void notifyDataChangeListeners() {
+		for(DataChangeListener listener : dataChangeListeners) {
+			listener.onDataChanged();
+		}
+		
+	}
+
 	private Fornecedor getFormData() {
 		Fornecedor obj = new Fornecedor();
 		obj.setIdFornecedor(Utils.tryParseToInt(txtIdFornecedor.getText()));

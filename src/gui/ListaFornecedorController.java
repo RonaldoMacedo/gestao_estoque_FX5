@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -28,7 +29,7 @@ import model.entities.Fornecedor;
 import model.enums.Situacao;
 import model.services.FornecedorService;
 
-public class ListaFornecedorController implements Initializable {
+public class ListaFornecedorController implements Initializable, DataChangeListener {
 	
 	private FornecedorService service;
 	
@@ -120,6 +121,7 @@ public class ListaFornecedorController implements Initializable {
 			FornecedorFormController controller = loader.getController();
 			controller.setFornecedor(obj);
 			controller.setFornecedorService(new FornecedorService());
+			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
@@ -133,6 +135,12 @@ public class ListaFornecedorController implements Initializable {
 		catch(IOException e) {
 			Alerts.showAlert("IOException", "Error loading view", e.getMessage(), AlertType.ERROR);
 		}
+	}
+
+	@Override
+	public void onDataChanged() {
+		updateTableView();
+		
 	}
 	
 }
