@@ -1,6 +1,7 @@
 package model.dao;
 
 import db.DB;
+import model.dao.impl.FornecedorDaoJDBC;
 import model.dao.impl.ItemDaoJDBC;
 import model.dao.impl.ProductDaoJDBC;
 
@@ -12,6 +13,10 @@ public class DaoFactory {
 	
 	public static ItemDao createItemDao() {
 		return new ItemDaoJDBC(DB.getConnection());
+	}
+	
+	public static FornecedorDao createFornecedorDao() {
+		return new FornecedorDaoJDBC(DB.getConnection());
 	}
 
 }
