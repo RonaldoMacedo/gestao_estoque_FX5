@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="337.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FornecedorFormController">
    <children>
       <GridPane layoutX="39.0" layoutY="62.0">
         <columnConstraints>
@@ -33,30 +33,30 @@
             <Label text="Apelido" GridPane.rowIndex="2" />
             <Label text="CNPJ" GridPane.rowIndex="3" />
             <Label text="Data do cadastro" GridPane.rowIndex="4" />
-            <TextField editable="false" GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtIdFornecedor" editable="false" GridPane.columnIndex="1" />
+            <TextField fx:id="txtRazaoSocial" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtApelido" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtCNPJ" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtDataCadastro" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtSituacao" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text="Situação" GridPane.rowIndex="5" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <Button mnemonicParsing="false" text="Salvar">
+                  <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#onBtSalvarAction" text="Salvar">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Cancelar">
+                  <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtCancelarAction" text="Cancelar">
                      <HBox.margin>
                         <Insets left="25.0" top="5.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <Label textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="lblErroRazaoSocial" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="lblErroApelido" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="lblErroCNPJ" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
