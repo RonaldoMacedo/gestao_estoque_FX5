@@ -1,15 +1,23 @@
 package gui;
 
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
+import db.DbException;
+import gui.util.Alerts;
 import gui.util.Constraints;
+import gui.util.Utils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Fornecedor;
+import model.enums.Situacao;
+import model.services.FornecedorService;
 
 public class FornecedorFormController implements Initializable {
 	
@@ -17,6 +25,12 @@ public class FornecedorFormController implements Initializable {
 	
 	public void setFornecedor(Fornecedor entity) {
 		this.entity = entity;
+	}
+	
+	private FornecedorService service;
+	
+	public void setFornecedorService(FornecedorService service) {
+		this.service = service;
 	}
 
 	@Override
@@ -69,16 +83,40 @@ public class FornecedorFormController implements Initializable {
 	private Button btSalvar;
 	
 	@FXML
-	public void onBtSalvarAction() {
-		System.out.println("Salvar");
+	public void onBtSalvarAction(ActionEvent event) {
+		if(entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+		if(service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		try {
+			entity = getFormData();
+			service.saveOrUpdate(entity);
+			Utils.currentStage(event).close();
+		}
+		catch(DbException e) {
+			Alerts.showAlert("Erro ao salvar fornecedor", null, e.getMessage(), AlertType.ERROR);
+		}
 	}
 	
+	private Fornecedor getFormData() {
+		Fornecedor obj = new Fornecedor();
+		obj.setIdFornecedor(Utils.tryParseToInt(txtIdFornecedor.getText()));
+		obj.setRazaoSocial(txtRazaoSocial.getText());
+		obj.setApelido(txtApelido.getText());
+		obj.setCnpj(txtCNPJ.getText());
+		obj.setDataCadastro(new Date(0));
+		obj.setSituacao(Situacao.valueOf(txtSituacao.getText()));
+		return obj;
+	}
+
 	@FXML
 	private Button btCancelar;
 	
 	@FXML
-	public void onBtCancelarAction() {
-		System.out.println("Cancelar");
+	public void onBtCancelarAction(ActionEvent event) {
+		Utils.currentStage(event).close();
 	}
 	
 	//*************************************************************************************************************************************************************

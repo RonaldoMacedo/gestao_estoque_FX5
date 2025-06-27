@@ -119,6 +119,7 @@ public class ListaFornecedorController implements Initializable {
 			
 			FornecedorFormController controller = loader.getController();
 			controller.setFornecedor(obj);
+			controller.setFornecedorService(new FornecedorService());
 			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();

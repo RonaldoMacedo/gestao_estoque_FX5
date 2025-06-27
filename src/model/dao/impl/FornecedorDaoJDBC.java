@@ -1,9 +1,11 @@
 package model.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +28,37 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 
 	@Override
 	public void insert(Fornecedor obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("insert into fornecedor(razao_social, apelido, cnpj, data_cadastro, situacao)\r\n"
+					+ "	values(?, ?, ?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, obj.getRazaoSocial());
+			ps.setString(2, obj.getApelido());
+			ps.setString(3, obj.getCnpj());
+			ps.setDate(4, (Date) new java.sql.Date(obj.getDataCadastro().getTime()));
+			ps.setString(5, obj.getSituacao().toString());
+			
+			int rowsAffected = ps.executeUpdate();
+			
+			if(rowsAffected > 0) {
+				ResultSet rs = ps.getGeneratedKeys();
+				if(rs.next()) {
+					int id = rs.getInt(1);
+					obj.setIdFornecedor(id);
+				}
+				DB.closeResultSet(rs);
+			}
+			else {
+				throw new DbException("Unexpected error! No rows affected...");
+			}
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(ps);
+		}
 		
 	}
 

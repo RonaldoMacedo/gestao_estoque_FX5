@@ -14,5 +14,14 @@ public class FornecedorService {
 	public List<Fornecedor> findAll() {
 		return dao.findAll();
 	}
+	
+	public void saveOrUpdate(Fornecedor obj) {
+		if(obj.getIdFornecedor() == null) {
+			dao.insert(obj);
+		}
+		else {
+			dao.update(obj);
+		}
+	}
 
 }
