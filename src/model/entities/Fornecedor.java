@@ -1,6 +1,6 @@
 package model.entities;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import model.enums.Situacao;
@@ -11,14 +11,14 @@ public class Fornecedor {
 	private String razaoSocial;
 	private String apelido;
 	private String cnpj;
-	private Date dataCadastro;
+	private LocalDateTime dataCadastro;
 	private Situacao situacao;
 	
 	public Fornecedor() {
 		
 	}
 
-	public Fornecedor(Integer idFornecedor, String razaoSocial, String apelido, String cnpj, Date dataCadastro,
+	public Fornecedor(Integer idFornecedor, String razaoSocial, String apelido, String cnpj, LocalDateTime dataCadastro,
 			Situacao situacao) {
 		super();
 		this.idFornecedor = idFornecedor;
@@ -45,7 +45,7 @@ public class Fornecedor {
 		return cnpj;
 	}
 
-	public Date getDataCadastro() {
+	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
 	}
 
@@ -69,7 +69,7 @@ public class Fornecedor {
 		this.cnpj = cnpj;
 	}
 
-	public void setDataCadastro(Date dataCadastro) {
+	public void setDataCadastro(LocalDateTime dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 

@@ -2,6 +2,7 @@ package gui;
 
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -161,7 +162,7 @@ public class FornecedorFormController implements Initializable {
 			exception.addError("CNPJ", "Campo obrigatório");
 		}
 		obj.setCnpj(txtCNPJ.getText());
-		obj.setDataCadastro(new Date(0));
+		obj.setDataCadastro(LocalDateTime.now());
 		obj.setSituacao(Situacao.valueOf(txtSituacao.getText()));
 		
 		if(exception.getErrors().size() > 0) {

@@ -3,6 +3,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -87,7 +88,7 @@ public class ListaFornecedorController implements Initializable, DataChangeListe
 	private TableColumn<Fornecedor, String> tableColumnCNPJ;
 	
 	@FXML
-	private TableColumn<Fornecedor, Date> tableColumnDataCadastro;
+	private TableColumn<Fornecedor, LocalDateTime> tableColumnDataCadastro;
 	
 	@FXML
 	private TableColumn<Fornecedor, Situacao> tableColumnSituacao;
