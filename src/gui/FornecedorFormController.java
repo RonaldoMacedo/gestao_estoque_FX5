@@ -4,7 +4,9 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import db.DbException;
 import gui.listeners.DataChangeListener;
@@ -20,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Fornecedor;
 import model.enums.Situacao;
+import model.exceptions.ValidationException;
 import model.services.FornecedorService;
 
 public class FornecedorFormController implements Initializable {
@@ -90,6 +93,19 @@ public class FornecedorFormController implements Initializable {
 	@FXML
 	private Label lblErroCNPJ;
 	
+	private void setErrorMessages(Map<String, String> errors) {
+		Set<String> fields = errors.keySet();
+		if(fields.contains("razaoSocial")) {
+			lblErroRazaoSocial.setText(errors.get("razaoSocial"));
+		}
+		if(fields.contains("apelido")) {
+			lblErroApelido.setText(errors.get("apelido"));
+		}
+		if(fields.contains("CNPJ")) {
+			lblErroCNPJ.setText(errors.get("CNPJ"));
+		}
+	}
+	
 	//*************************************************************************************************************************************************************
 	
 	@FXML
@@ -112,6 +128,9 @@ public class FornecedorFormController implements Initializable {
 		catch(DbException e) {
 			Alerts.showAlert("Erro ao salvar fornecedor", null, e.getMessage(), AlertType.ERROR);
 		}
+		catch(ValidationException e) {
+			setErrorMessages(e.getErrors());
+		}
 	}
 	
 	private void notifyDataChangeListeners() {
@@ -123,12 +142,31 @@ public class FornecedorFormController implements Initializable {
 
 	private Fornecedor getFormData() {
 		Fornecedor obj = new Fornecedor();
+		
+		ValidationException exception = new ValidationException("Validation exception");
+		
 		obj.setIdFornecedor(Utils.tryParseToInt(txtIdFornecedor.getText()));
+		
+		if(txtRazaoSocial.getText() == null || txtRazaoSocial.getText().trim().equals("")) {
+			exception.addError("razaoSocial", "Campo obrigatório");
+		}
 		obj.setRazaoSocial(txtRazaoSocial.getText());
+		
+		if(txtApelido.getText() == null || txtApelido.getText().trim().equals("")) {
+			exception.addError("apelido", "Campo obrigatório");
+		}
 		obj.setApelido(txtApelido.getText());
+		
+		if(txtCNPJ.getText() == null || txtCNPJ.getText().trim().equals("")) {
+			exception.addError("CNPJ", "Campo obrigatório");
+		}
 		obj.setCnpj(txtCNPJ.getText());
 		obj.setDataCadastro(new Date(0));
 		obj.setSituacao(Situacao.valueOf(txtSituacao.getText()));
+		
+		if(exception.getErrors().size() > 0) {
+			throw exception;
+		}
 		return obj;
 	}
 
