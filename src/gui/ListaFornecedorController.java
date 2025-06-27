@@ -133,7 +133,7 @@ public class ListaFornecedorController implements Initializable, DataChangeListe
 	
 	@FXML
 	public void onBtAtualizarAction() {
-		System.out.println("Atualizar fornecedor");
+		System.out.println("Atualizar fornecedor por código");
 	}
 	
 	//************************************************************************************************************************************************************
