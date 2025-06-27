@@ -10,6 +10,7 @@ import application.Main;
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,6 +48,7 @@ public class ListaFornecedorController implements Initializable, DataChangeListe
 		List<Fornecedor> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewFornecedor.setItems(obsList);
+		initEditButtons();
 	}
 
 	@Override
@@ -88,6 +91,28 @@ public class ListaFornecedorController implements Initializable, DataChangeListe
 	
 	@FXML
 	private TableColumn<Fornecedor, Situacao> tableColumnSituacao;
+	
+	@FXML
+	private TableColumn<Fornecedor, Fornecedor> tableColumnEditar;
+	
+	private void initEditButtons() {
+		tableColumnEditar.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnEditar.setCellFactory(param -> new TableCell<Fornecedor, Fornecedor>(){
+			private final Button button = new Button("Editar");
+			
+			@Override
+			protected void updateItem(Fornecedor obj, boolean empty) {
+				super.updateItem(obj, empty);
+				
+				if(obj == null) {
+					setGraphic(null);
+					return;
+				}
+				setGraphic(button);
+				button.setOnAction(event -> createDialogForm(obj, "/gui/FornecedorForm.fxml", Utils.currentStage(event)));
+			}
+		});
+	}
 	
 	//************************************************************************************************************************************************************
 	

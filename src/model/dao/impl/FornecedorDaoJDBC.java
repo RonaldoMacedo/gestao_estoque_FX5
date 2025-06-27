@@ -64,7 +64,25 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 
 	@Override
 	public void update(Fornecedor obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("update fornecedor "
+					+ "set razao_social=?, apelido=?, cnpj=?, situacao=? "
+					+ "where id_fornecedor=?");
+			ps.setString(1, obj.getRazaoSocial());
+			ps.setString(2, obj.getApelido());
+			ps.setString(3, obj.getCnpj());
+			ps.setString(4, obj.getSituacao().toString());
+			ps.setInt(5, obj.getIdFornecedor());
+			ps.executeUpdate();
+				
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(ps);
+		}
 		
 	}
 
