@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +36,7 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 			ps.setString(1, obj.getRazaoSocial());
 			ps.setString(2, obj.getApelido());
 			ps.setString(3, obj.getCnpj());
-			ps.setString(4, obj.getDataCadastro().toString());
+			ps.setDate(4, (Date) new java.sql.Date(obj.getDataCadastro().getTime()));
 			ps.setString(5, obj.getSituacao().toString());
 			
 			int rowsAffected = ps.executeUpdate();
@@ -136,7 +135,7 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 		forn.setRazaoSocial(rs.getString("razao_social"));
 		forn.setApelido(rs.getString("apelido"));
 		forn.setCnpj(rs.getString("cnpj"));
-		forn.setDataCadastro(LocalDateTime.now());
+		forn.setDataCadastro(rs.getDate("data_cadastro"));
 		forn.setSituacao(Situacao.valueOf(rs.getString("situacao")));
 		return forn;
 	}
