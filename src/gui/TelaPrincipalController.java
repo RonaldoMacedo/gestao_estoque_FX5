@@ -47,7 +47,7 @@ public class TelaPrincipalController implements Initializable {
 	
 	@FXML
 	public void onMenuItemListarItensAction() {
-		System.out.println("Lista de itens");
+		loadView("/gui/ItemList.fxml", null);
 	}
 	
 	//*************************************************************************************************************************************************************

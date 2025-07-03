@@ -1,6 +1,8 @@
 package application;
 
 import java.sql.Date;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import model.dao.DaoFactory;
@@ -61,6 +63,10 @@ public class TesteConexao {
 		int id = sc.nextInt();
 		productDao.deleteByid(id);
 		System.out.println("Delete completed!");
+		
+		DateTimeFormatter dtm = DateTimeFormatter.ISO_INSTANT;
+		Instant i = Instant.now();
+		System.out.println(dtm.format(i));
 		
 		sc.close();
 	}
