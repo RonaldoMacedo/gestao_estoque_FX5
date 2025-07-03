@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.util.Date;
+
 import java.util.Objects;
 
 import model.enums.Situacao;

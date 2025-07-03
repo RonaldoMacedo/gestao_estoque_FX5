@@ -1,7 +1,12 @@
 package gui;
 
 import java.net.URL;
+
 import java.util.Date;
+
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -161,7 +166,9 @@ public class FornecedorFormController implements Initializable {
 			exception.addError("CNPJ", "Campo obrigatório");
 		}
 		obj.setCnpj(txtCNPJ.getText());
+
 		obj.setDataCadastro(new Date());
+
 		obj.setSituacao(Situacao.valueOf(txtSituacao.getText()));
 		
 		if(exception.getErrors().size() > 0) {
