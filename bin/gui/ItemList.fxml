@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ItemListController">
    <children>
       <Label text="Itens cadastrados">
          <font>
@@ -21,19 +21,19 @@
       </Label>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button mnemonicParsing="false" text="Novo" />
+          <Button fx:id="btNovoItem" mnemonicParsing="false" onAction="#onBtNovoItemAction" text="Novo" />
         </items>
       </ToolBar>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewItems" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Código" />
-          <TableColumn prefWidth="75.0" text="Item" />
-            <TableColumn prefWidth="75.0" text="Data do cadastro" />
-            <TableColumn prefWidth="75.0" text="Código ref" />
-            <TableColumn prefWidth="75.0" text="Código de barras" />
-            <TableColumn prefWidth="75.0" text="Situação" />
+          <TableColumn fx:id="tableColumnIdItem" prefWidth="75.0" text="Código" />
+          <TableColumn fx:id="tableColumnDescricao" prefWidth="75.0" text="Descrição" />
+            <TableColumn fx:id="tableColumnDataCadastro" prefWidth="75.0" text="Data do cadastro" />
+            <TableColumn fx:id="tableColumnCodigoRef" prefWidth="75.0" text="Código ref" />
+            <TableColumn fx:id="tableColumnCodigoDeBarras" prefWidth="75.0" text="Código de barras" />
+            <TableColumn fx:id="tableColumnSituacao" prefWidth="75.0" text="Situação" />
             <TableColumn prefWidth="75.0" text="Marca" />
-            <TableColumn prefWidth="75.0" text="Produto" />
+            <TableColumn fx:id="tableColumnProduto" prefWidth="75.0" text="Produto" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
