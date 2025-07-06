@@ -17,6 +17,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import model.services.FornecedorService;
+import model.services.ItemService;
 import model.services.ProductService;
 
 public class TelaPrincipalController implements Initializable {
@@ -47,7 +48,10 @@ public class TelaPrincipalController implements Initializable {
 	
 	@FXML
 	public void onMenuItemListarItensAction() {
-		loadView("/gui/ItemList.fxml", null);
+		loadView("/gui/ItemList.fxml", (ItemListController controller) -> {
+			controller.setItemService(new ItemService());
+			controller.updateTableView();
+		});
 	}
 	
 	//*************************************************************************************************************************************************************

@@ -2,9 +2,12 @@ package gui;
 
 import java.net.URL;
 import java.sql.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,8 +18,19 @@ import javafx.stage.Stage;
 import model.entities.Item;
 import model.entities.Product;
 import model.enums.Situacao;
+import model.services.ItemService;
 
 public class ItemListController implements Initializable {
+	
+	//*************************************************************************************************************************************************************
+	
+	private ItemService service;
+	
+	public void setItemService(ItemService service) {
+		this.service = service;
+	}
+	
+	//*************************************************************************************************************************************************************
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -74,6 +88,15 @@ public class ItemListController implements Initializable {
 	
 	//*************************************************************************************************************************************************************
 	
+	private ObservableList<Item> obsList;
 	
+	public void updateTableView() {
+		if(service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		List<Item> list = service.findAll();
+		obsList = FXCollections.observableArrayList(list);
+		tableViewItems.setItems(obsList);
+	}
 
 }
