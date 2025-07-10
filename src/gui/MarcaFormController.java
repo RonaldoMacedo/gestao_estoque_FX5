@@ -9,8 +9,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.entities.Marca;
 
 public class MarcaFormController implements Initializable {
+	
+	private Marca entity;
+	
+	public void setMarca(Marca entity) {
+		this.entity = entity;
+	}
+	
+	//*************************************************************************************************************************************************************
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -55,5 +64,15 @@ public class MarcaFormController implements Initializable {
 	
 	@FXML
 	private Label lblErroMarca;
+	
+	//*************************************************************************************************************************************************************
+	
+	public void updateFormData() {
+		if(entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+		txtIdMarca.setText(String.valueOf(entity.getIdMarca()));
+		txtMarca.setText(String.valueOf(entity.getMarca()));
+	}
 
 }

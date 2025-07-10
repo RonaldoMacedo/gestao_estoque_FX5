@@ -85,15 +85,20 @@ public class MarcaListController implements Initializable {
 	@FXML
 	public void onBtNovaMarcaAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
-		createDialogForm("/gui/MarcaForm.fxml", parentStage);
+		Marca obj = new Marca();
+		createDialogForm(obj, "/gui/MarcaForm.fxml", parentStage);
 	}
 	
 	//*************************************************************************************************************************************************************
 
-	private void createDialogForm(String absoluteName, Stage parentStage) {
+	private void createDialogForm(Marca obj, String absoluteName, Stage parentStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
+			
+			MarcaFormController controller = loader.getController();
+			controller.setMarca(obj);
+			controller.updateFormData();
 			
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Digite os dados da marca");
