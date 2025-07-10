@@ -57,6 +57,16 @@ public class TelaPrincipalController implements Initializable {
 	//*************************************************************************************************************************************************************
 	
 	@FXML
+	private MenuItem menuItemMarca;
+	
+	@FXML
+	public void onMenuItemListarMarcasAction() {
+		loadView("/gui/MarcaList.fxml", null);
+	}
+	
+	//*************************************************************************************************************************************************************
+	
+	@FXML
 	private MenuItem menuItemListarFornecedores;
 
 	@FXML
@@ -108,6 +118,10 @@ public class TelaPrincipalController implements Initializable {
 		});
 	}
 
+	//*************************************************************************************************************************************************************
+	
+
+	
 	//*************************************************************************************************************************************************************
 
 	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) {
