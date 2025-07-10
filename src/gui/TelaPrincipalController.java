@@ -18,6 +18,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import model.services.FornecedorService;
 import model.services.ItemService;
+import model.services.MarcaService;
 import model.services.ProductService;
 
 public class TelaPrincipalController implements Initializable {
@@ -61,7 +62,10 @@ public class TelaPrincipalController implements Initializable {
 	
 	@FXML
 	public void onMenuItemListarMarcasAction() {
-		loadView("/gui/MarcaList.fxml", null);
+		loadView("/gui/MarcaList.fxml", (MarcaListController controller) -> {
+			controller.setMarcaService(new MarcaService());
+			controller.updateTableView();
+		});
 	}
 	
 	//*************************************************************************************************************************************************************
