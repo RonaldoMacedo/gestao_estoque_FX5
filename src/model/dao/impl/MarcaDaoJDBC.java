@@ -1,9 +1,11 @@
 package model.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,13 +26,53 @@ public class MarcaDaoJDBC implements MarcaDao {
 
 	@Override
 	public void insert(Marca obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("insert into marca(nome_fantasia) "
+					+ "	values(?)",
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, obj.getMarca().toString());
+			
+			int rowsAffected = ps.executeUpdate();
+			
+			if(rowsAffected > 0) {
+				ResultSet rs = ps.getGeneratedKeys();
+				if(rs.next()) {
+					int id = rs.getInt(1);
+					obj.setIdMarca(id);
+				}
+				DB.closeResultSet(rs);
+			}
+			else {
+				throw new DbException("Unexpected error! No rows affected...");
+			}
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(ps);
+		}
 		
 	}
 
 	@Override
 	public void update(Marca obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement("update marca "
+					+ "set nome_fantasia=? "
+					+ "where id_marca=?");
+			ps.setString(1, obj.getMarca());
+			ps.executeUpdate();
+				
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(ps);
+		}
 		
 	}
 

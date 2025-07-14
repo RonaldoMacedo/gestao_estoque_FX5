@@ -10,9 +10,17 @@ public class MarcaService {
 	
 	private MarcaDao dao = DaoFactory.createMarcaDao();
 	
-	//MOCK de dados
 	public List<Marca> findAll() {
 		return dao.findAll();
+	}
+	
+	public void saveOrUpdate(Marca obj) {
+		if(obj.getIdMarca() == null) {
+			dao.insert(obj);
+		}
+		else {
+			dao.update(obj);
+		}
 	}
 
 }
