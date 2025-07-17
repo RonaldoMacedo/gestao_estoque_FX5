@@ -31,6 +31,7 @@
         <columns>
           <TableColumn fx:id="tableColumnIdMarca" prefWidth="75.0" text="Código" />
           <TableColumn fx:id="tableColumnMarca" prefWidth="75.0" text="Marca" />
+            <TableColumn fx:id="tableColumnEditar" prefWidth="75.0" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

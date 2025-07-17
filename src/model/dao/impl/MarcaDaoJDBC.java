@@ -64,6 +64,7 @@ public class MarcaDaoJDBC implements MarcaDao {
 					+ "set nome_fantasia=? "
 					+ "where id_marca=?");
 			ps.setString(1, obj.getMarca());
+			ps.setInt(2, obj.getIdMarca());
 			ps.executeUpdate();
 				
 		}
