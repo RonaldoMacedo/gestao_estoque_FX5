@@ -1,6 +1,8 @@
 package gui;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -153,7 +155,9 @@ public class ProductFormController implements Initializable {
 		}
 		txtCodigo.setText(String.valueOf(entity.getIdProduto()));
 		txtDescricaoInterna.setText(entity.getDescricaoInterna());
-		txtDataDoCadastro.setUserData(entity.getDataCadastro());
+		if(entity.getDataCadastro() != null) {
+			txtDataDoCadastro.setText(String.valueOf(LocalDateTime.ofInstant(entity.getDataCadastro().toInstant(), ZoneId.systemDefault())));
+		}
 		txtGrupo.setText(String.valueOf(entity.getGrupo()));
 		txtSituacao.setText(String.valueOf(entity.getSituacao()));
 	}

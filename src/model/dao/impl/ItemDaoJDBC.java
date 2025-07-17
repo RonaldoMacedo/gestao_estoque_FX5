@@ -71,7 +71,7 @@ public class ItemDaoJDBC implements ItemDao {
 		Product prod = new Product();
 		prod.setIdProduto(rs.getInt("id_produto"));
 		prod.setDescricaoInterna(rs.getString("descricao_interna"));
-		prod.setDataCadastro(rs.getDate("data_cadastro"));
+		prod.setDataCadastro(new java.util.Date(rs.getTimestamp("data_cadastro").getTime()));
 		prod.setGrupo(Grupo.valueOf(rs.getString("grupo")));
 		prod.setSituacao(Situacao.valueOf(rs.getString("situacao")));
 		prod.setSaldo(rs.getInt("saldo"));

@@ -52,7 +52,6 @@ public class ItemListController implements Initializable {
 		tableColumnIdItem.setCellValueFactory(new PropertyValueFactory<>("idItem"));
 		tableColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		tableColumnDataCadastro.setCellValueFactory(new PropertyValueFactory<>("dataCadastro"));
-		Utils.formatTableColumnDate(tableColumnDataCadastro, "dd/MM/yyyy");
 		tableColumnCodigoRef.setCellValueFactory(new PropertyValueFactory<>("codigoRef"));
 		tableColumnCodigoDeBarras.setCellValueFactory(new PropertyValueFactory<>("codigoDeBarras"));
 		tableColumnSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
