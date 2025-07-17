@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.entities.Item;
+import model.entities.Marca;
 import model.entities.Product;
 import model.enums.Situacao;
 import model.services.ItemService;
@@ -77,6 +78,9 @@ public class ItemListController implements Initializable {
 	
 	@FXML
 	private TableColumn<Item, Product> tableColumnProduto;
+	
+	@FXML
+	private TableColumn<Item, Marca> tableColumnMarca;
 	
 	//*************************************************************************************************************************************************************
 	

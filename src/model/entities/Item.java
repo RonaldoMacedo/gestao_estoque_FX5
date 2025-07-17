@@ -17,6 +17,7 @@ public class Item implements Serializable {
 	private Situacao situacao;
 	private Integer saldo;
 	
+	private Marca marca;
 	private Product product;
 	
 	public Item() {
@@ -24,7 +25,7 @@ public class Item implements Serializable {
 	}
 
 	public Item(Integer idItem, String descricao, Date dataCadastro, String codigoRef, String codigoDeBarras,
-			Situacao situacao, Integer saldo, Product product) {
+			Situacao situacao, Integer saldo, Marca marca, Product product) {
 		super();
 		this.idItem = idItem;
 		this.descricao = descricao;
@@ -34,6 +35,7 @@ public class Item implements Serializable {
 		this.situacao = situacao;
 		this.saldo = saldo;
 		this.product = product;
+		this.setMarca(marca);
 	}
 
 	public Integer getIdItem() {
@@ -67,6 +69,10 @@ public class Item implements Serializable {
 	public Product getProduct() {
 		return product;
 	}
+	
+	public Marca getMarca() {
+		return marca;
+	}
 
 	public void setIdItem(Integer idItem) {
 		this.idItem = idItem;
@@ -98,6 +104,10 @@ public class Item implements Serializable {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+	
+	public void setMarca(Marca marca) {
+		this.marca = marca;
 	}
 
 	@Override
