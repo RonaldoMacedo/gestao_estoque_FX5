@@ -1,11 +1,12 @@
 package gui;
 
 import java.net.URL;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -41,7 +42,9 @@ public class ItemListController implements Initializable {
 	private void initializeNodes() {
 		tableColumnIdItem.setCellValueFactory(new PropertyValueFactory<>("idItem"));
 		tableColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+		Utils.formatTableColumnDate(tableColumnDataCadastro, "dd/MM/yyyy");
 		tableColumnDataCadastro.setCellValueFactory(new PropertyValueFactory<>("dataCadastro"));
+		
 		tableColumnCodigoRef.setCellValueFactory(new PropertyValueFactory<>("codigoRef"));
 		tableColumnCodigoDeBarras.setCellValueFactory(new PropertyValueFactory<>("codigoDeBarras"));
 		tableColumnSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
