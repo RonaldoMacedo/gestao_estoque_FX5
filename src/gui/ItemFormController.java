@@ -1,9 +1,12 @@
 package gui;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 import gui.util.Constraints;
+import gui.util.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -100,7 +103,7 @@ public class ItemFormController implements Initializable {
 		}
 		txtIdItem.setText(String.valueOf(entity.getIdItem()));
 		txtDescricao.setText(String.valueOf(entity.getDescricao()));
-		txtDataCadastro.setText(String.valueOf(entity.getDataCadastro()));
+		txtDataCadastro.setText(String.valueOf(LocalDateTime.ofInstant(entity.getDataCadastro().toInstant(), ZoneId.systemDefault())));
 		txtCodigoRef.setText(String.valueOf(entity.getCodigoRef()));
 		txtCodigoDeBarras.setText(String.valueOf(entity.getCodigoDeBarras()));
 		txtSituacao.setText(String.valueOf(entity.getSituacao()));

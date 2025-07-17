@@ -82,7 +82,7 @@ public class ItemDaoJDBC implements ItemDao {
 		Item obj = new Item();
 		obj.setIdItem(rs.getInt("id_item"));
 		obj.setDescricao(rs.getString("descricao"));
-		obj.setDataCadastro(rs.getDate("data_cadastro"));
+		obj.setDataCadastro(new java.util.Date(rs.getTimestamp("data_cadastro").getTime()));
 		obj.setCodigoRef(rs.getString("codigo_ref"));
 		obj.setCodigoDeBarras(rs.getString("codigo_barras"));
 		obj.setSituacao(Situacao.valueOf(rs.getString("situacao")));
