@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.entities.Item;
 
 public class ItemFormController implements Initializable {
 
@@ -19,6 +20,15 @@ public class ItemFormController implements Initializable {
 	
 	private void initializeNodes() {
 		Constraints.setTextFieldDouble(txtCodigoDeBarras);
+	}
+	
+	//*************************************************************************************************************************************************************
+	
+	
+	private Item entity;
+	
+	public void setItem(Item entity) {
+		this.entity = entity;
 	}
 	
 	//*************************************************************************************************************************************************************
@@ -83,4 +93,19 @@ public class ItemFormController implements Initializable {
 	
 	//*************************************************************************************************************************************************************
 
+	
+	public void updateFormData() {
+		if(entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+		txtIdItem.setText(String.valueOf(entity.getIdItem()));
+		txtDescricao.setText(String.valueOf(entity.getDescricao()));
+		txtDataCadastro.setText(String.valueOf(entity.getDataCadastro()));
+		txtCodigoRef.setText(String.valueOf(entity.getCodigoRef()));
+		txtCodigoDeBarras.setText(String.valueOf(entity.getCodigoDeBarras()));
+		txtSituacao.setText(String.valueOf(entity.getSituacao()));
+		txtMarca.setText(String.valueOf(entity.getMarca()));
+		txtProduto.setText(String.valueOf(entity.getProduct()));
+		txtSaldo.setText(String.valueOf(entity.getSaldo()));
+	}
 }
