@@ -33,13 +33,13 @@ import model.services.ProductService;
 public class ProductListController implements Initializable, DataChangeListener {
 	
 	private ProductService service;
+	
+	//************************************************************************************************************************************************************
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
 	}
-	
-	private ObservableList<Product> obsList;
 	
 	private void initializeNodes() {
 		tableColumnIdProduto.setCellValueFactory(new PropertyValueFactory<>("idProduto"));	
@@ -52,10 +52,11 @@ public class ProductListController implements Initializable, DataChangeListener 
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewProduct.prefHeightProperty().bind(stage.heightProperty());
 		
-		
 	}
 
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
+	
+	private ObservableList<Product> obsList;
 	
 	@FXML
 	private TableView<Product> tableViewProduct;
@@ -78,7 +79,7 @@ public class ProductListController implements Initializable, DataChangeListener 
 	@FXML
 	private TableColumn<Product, Integer> tableColumnSaldo;
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private Button btNovo;
@@ -90,7 +91,7 @@ public class ProductListController implements Initializable, DataChangeListener 
 		createDialogForm(obj, "/gui/ProductForm.fxml", parentStage);
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private Button btAtualizar;
@@ -99,6 +100,8 @@ public class ProductListController implements Initializable, DataChangeListener 
 	public void onBtAtualizarAction() {
 		System.out.println("Atualizar produto");
 	}
+	
+	//************************************************************************************************************************************************************
 	
 	public void setProductService(ProductService service) {
 		this.service = service;
