@@ -1,11 +1,11 @@
 package model.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +20,8 @@ import model.enums.Situacao;
 
 public class FornecedorDaoJDBC implements FornecedorDao {
 	
+	DateTimeFormatter dtm = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+	
 	private Connection conn;
 	
 	public FornecedorDaoJDBC(Connection conn) {
@@ -30,14 +32,13 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 	public void insert(Fornecedor obj) {
 		PreparedStatement ps = null;
 		try {
-			ps = conn.prepareStatement("insert into fornecedor(razao_social, apelido, cnpj, data_cadastro, situacao)\r\n"
-					+ "	values(?, ?, ?, ?, ?)",
+			ps = conn.prepareStatement("insert into fornecedor(razao_social, apelido, cnpj, situacao)\r\n"
+					+ "	values(?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getRazaoSocial());
 			ps.setString(2, obj.getApelido());
 			ps.setString(3, obj.getCnpj());
-			ps.setDate(4, (Date) new java.sql.Date(obj.getDataCadastro().getTime()));
-			ps.setString(5, obj.getSituacao().toString());
+			ps.setString(4, obj.getSituacao().toString());
 			
 			int rowsAffected = ps.executeUpdate();
 			
@@ -45,7 +46,6 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 				ResultSet rs = ps.getGeneratedKeys();
 				if(rs.next()) {
 					int id = rs.getInt(1);
-					obj.setIdFornecedor(id);
 				}
 				DB.closeResultSet(rs);
 			}
@@ -131,11 +131,11 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 
 	private Fornecedor instantiateFornecedor(ResultSet rs) throws SQLException {
 		Fornecedor forn = new Fornecedor();
-		forn.setIdFornecedor(rs.getInt("id_fornecedor"));
+
 		forn.setRazaoSocial(rs.getString("razao_social"));
 		forn.setApelido(rs.getString("apelido"));
 		forn.setCnpj(rs.getString("cnpj"));
-		forn.setDataCadastro(rs.getDate("data_cadastro"));
+
 		forn.setSituacao(Situacao.valueOf(rs.getString("situacao")));
 		return forn;
 	}
