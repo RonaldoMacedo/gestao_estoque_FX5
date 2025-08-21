@@ -119,7 +119,7 @@ public class ProductFormController implements Initializable {
 		Product obj = new Product();
 		ValidationException exception = new ValidationException("Validation error");
 		
-		obj.setIdProduto(Utils.tryParseToInt(txtCodigo.getText()));
+		obj.getIdProduto();
 		
 		if(txtDescricaoInterna.getText() == null || txtDescricaoInterna.getText().trim().equals("")) {
 			exception.addError("descricaoInterna", "O nome do produto é obrigatório");
@@ -128,7 +128,7 @@ public class ProductFormController implements Initializable {
 		if(exception.getErrors().size() > 0) {
 			throw exception;
 		}
-		obj.setDataCadastro(new Date());
+		obj.getDataCadastro();
 		obj.setGrupo(Grupo.valueOf(txtGrupo.getText()));
 		obj.setSituacao(Situacao.valueOf(txtSituacao.getText()));
 		return obj;
