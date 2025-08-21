@@ -30,7 +30,7 @@ import model.enums.Grupo;
 import model.enums.Situacao;
 import model.services.ProductService;
 
-public class ListaProdutoController implements Initializable, DataChangeListener {
+public class ProductListController implements Initializable, DataChangeListener {
 	
 	private ProductService service;
 

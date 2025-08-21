@@ -1,7 +1,7 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Objects;
 
 import model.enums.Grupo;
@@ -12,26 +12,24 @@ public class Product implements Serializable {
 	
 	private Integer idProduto;
 	private String descricaoInterna;
-	private Date dataCadastro;
 	private Grupo grupo;
+	private Instant dataCadastro;
 	private Situacao situacao;
 	private Integer saldo;
 	
-	private Item itens;
-	
-	public Product() {
+	public Product () {
 		
 	}
 
-	public Product(Integer idProduto, String descricaoInterna, Date dataCadastro, Grupo grupo, Situacao situacao, Integer saldo, Item itens) {
+	public Product(Integer idProduto, String descricaoInterna, Grupo grupo, Instant dataCadastro, Situacao situacao,
+			Integer saldo) {
 		super();
 		this.idProduto = idProduto;
 		this.descricaoInterna = descricaoInterna;
-		this.setDataCadastro(dataCadastro);
 		this.grupo = grupo;
+		this.dataCadastro = dataCadastro;
 		this.situacao = situacao;
 		this.saldo = saldo;
-		this.setItens(itens);
 	}
 
 	public Integer getIdProduto() {
@@ -44,6 +42,10 @@ public class Product implements Serializable {
 
 	public Grupo getGrupo() {
 		return grupo;
+	}
+
+	public Instant getDataCadastro() {
+		return dataCadastro;
 	}
 
 	public Situacao getSituacao() {
@@ -66,28 +68,16 @@ public class Product implements Serializable {
 		this.grupo = grupo;
 	}
 
+	public void setDataCadastro(Instant dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
 	}
 
 	public void setSaldo(Integer saldo) {
 		this.saldo = saldo;
-	}
-	
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
-
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-	
-	public Item getItens() {
-		return itens;
-	}
-
-	public void setItens(Item itens) {
-		this.itens = itens;
 	}
 
 	@Override
@@ -109,8 +99,8 @@ public class Product implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Product [idProduto=" + idProduto + ", descricaoInterna=" + descricaoInterna + ", dataCadastro=" + dataCadastro + ", grupo=" + grupo
-				+ ", situacao=" + situacao + ", saldo=" + saldo + "]";
+		return "Product [idProduto=" + idProduto + ", descricaoInterna=" + descricaoInterna + ", grupo=" + grupo
+				+ ", dataCadastro=" + dataCadastro + ", situacao=" + situacao + ", saldo=" + saldo + "]";
 	}
 
 }
