@@ -56,10 +56,6 @@ public class Product implements Serializable {
 		return saldo;
 	}
 
-	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
-	}
-
 	public void setDescricaoInterna(String descricaoInterna) {
 		this.descricaoInterna = descricaoInterna;
 	}
@@ -68,16 +64,8 @@ public class Product implements Serializable {
 		this.grupo = grupo;
 	}
 
-	public void setDataCadastro(Instant dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-
 	public void setSituacao(Situacao situacao) {
 		this.situacao = situacao;
-	}
-
-	public void setSaldo(Integer saldo) {
-		this.saldo = saldo;
 	}
 
 	@Override
