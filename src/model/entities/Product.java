@@ -2,6 +2,7 @@ package model.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import model.enums.Grupo;
@@ -13,7 +14,7 @@ public class Product implements Serializable {
 	private Integer idProduto;
 	private String descricaoInterna;
 	private Grupo grupo;
-	private Instant dataCadastro;
+	private LocalDateTime dataCadastro;
 	private Situacao situacao;
 	private Integer saldo;
 	
@@ -21,7 +22,7 @@ public class Product implements Serializable {
 		
 	}
 
-	public Product(Integer idProduto, String descricaoInterna, Grupo grupo, Instant dataCadastro, Situacao situacao,
+	public Product(Integer idProduto, String descricaoInterna, Grupo grupo, LocalDateTime dataCadastro, Situacao situacao,
 			Integer saldo) {
 		super();
 		this.idProduto = idProduto;
@@ -44,7 +45,7 @@ public class Product implements Serializable {
 		return grupo;
 	}
 
-	public Instant getDataCadastro() {
+	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
 	}
 

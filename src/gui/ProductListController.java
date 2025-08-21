@@ -32,7 +32,24 @@ import model.services.ProductService;
 
 public class ProductListController implements Initializable, DataChangeListener {
 	
+	//************************************************************************************************************************************************************
+	
 	private ProductService service;
+	
+	public void setProductService(ProductService service) {
+		this.service = service;
+	}
+	
+	private ObservableList<Product> obsList;
+	
+	public void updateTableView() {
+		if(service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		List<Product> list = service.findAll();
+		obsList = FXCollections.observableArrayList(list);
+		tableViewProduct.setItems(obsList);
+	}
 	
 	//************************************************************************************************************************************************************
 
@@ -56,7 +73,6 @@ public class ProductListController implements Initializable, DataChangeListener 
 
 	//************************************************************************************************************************************************************
 	
-	private ObservableList<Product> obsList;
 	
 	@FXML
 	private TableView<Product> tableViewProduct;
@@ -103,18 +119,6 @@ public class ProductListController implements Initializable, DataChangeListener 
 	
 	//************************************************************************************************************************************************************
 	
-	public void setProductService(ProductService service) {
-		this.service = service;
-	}
-	
-	public void updateTableView() {
-		if(service == null) {
-			throw new IllegalStateException("Service was null");
-		}
-		List<Product> list = service.findAll();
-		obsList = FXCollections.observableArrayList(list);
-		tableViewProduct.setItems(obsList);
-	}
 	
 	private void createDialogForm(Product obj, String absoluteName, Stage parentStage) {
 		try {

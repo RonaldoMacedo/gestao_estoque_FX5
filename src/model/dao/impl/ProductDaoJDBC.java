@@ -1,7 +1,6 @@
 	package model.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +33,7 @@ public class ProductDaoJDBC implements ProductDao {
 					+ "	values(?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, obj.getDescricaoInterna());
-			ps.setDate(2, (Date) new java.sql.Date(obj.getDataCadastro().getTime()));
+			ps.setString(2, obj.getDataCadastro().toString());
 			ps.setString(3, obj.getGrupo().toString());
 			ps.setString(4, obj.getSituacao().toString());
 			
@@ -44,7 +43,6 @@ public class ProductDaoJDBC implements ProductDao {
 				ResultSet rs = ps.getGeneratedKeys();
 				if(rs.next()) {
 					int id = rs.getInt(1);
-					obj.setIdProduto(id);
 				}
 				DB.closeResultSet(rs);
 			}
@@ -66,13 +64,12 @@ public class ProductDaoJDBC implements ProductDao {
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement("update produto "
-					+ "set descricao_interna=?, data_cadastro=?, grupo=?, situacao=? "
+					+ "set descricao_interna=?, grupo=?, situacao=? "
 					+ "where id_produto=?");
 			ps.setString(1, obj.getDescricaoInterna());
-			ps.setDate(2, (Date) new java.util.Date(obj.getDataCadastro().getTime()));
-			ps.setString(3, obj.getGrupo().toString());
-			ps.setString(4, obj.getSituacao().toString());
-			ps.setInt(5, obj.getIdProduto());
+			ps.setString(2, obj.getGrupo().toString());
+			ps.setString(3, obj.getSituacao().toString());
+			ps.setInt(4, obj.getIdProduto());
 			
 			ps.executeUpdate();
 				
@@ -128,12 +125,9 @@ public class ProductDaoJDBC implements ProductDao {
 
 	private Product instantiateProduct(ResultSet rs) throws SQLException {
 		Product obj = new Product();
-		obj.setIdProduto(rs.getInt("id_produto"));
 		obj.setDescricaoInterna(rs.getString("descricao_interna"));
-		obj.setDataCadastro(rs.getDate("data_cadastro"));
 		obj.setGrupo(Grupo.valueOf(rs.getString("grupo")));
 		obj.setSituacao(Situacao.valueOf(rs.getString("situacao")));
-		obj.setSaldo(rs.getInt("saldo"));
 		return obj;
 	}
 
