@@ -36,7 +36,7 @@ public class TelaPrincipalController implements Initializable {
 
 	@FXML
 	public void onMenuItemListarProdutosAction() {
-		loadView("/gui/ListaProduto.fxml", (ProductListController controller) -> {
+		loadView("/gui/ProductList.fxml", (ProductListController controller) -> {
 			controller.setProductService(new ProductService());
 			controller.updateTableView();
 		});
