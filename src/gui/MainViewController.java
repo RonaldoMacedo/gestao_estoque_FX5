@@ -21,7 +21,7 @@ import model.services.ItemService;
 import model.services.MarcaService;
 import model.services.ProductService;
 
-public class TelaPrincipalController implements Initializable {
+public class MainViewController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
