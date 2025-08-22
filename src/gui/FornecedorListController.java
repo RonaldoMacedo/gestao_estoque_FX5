@@ -32,7 +32,7 @@ import model.entities.Fornecedor;
 import model.enums.Situacao;
 import model.services.FornecedorService;
 
-public class ListaFornecedorController implements Initializable, DataChangeListener {
+public class FornecedorListController implements Initializable, DataChangeListener {
 	
 	private FornecedorService service;
 	

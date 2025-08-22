@@ -75,7 +75,7 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemListarFornecedoresAction() {
-		loadView("/gui/ListaFornecedor.fxml", (ListaFornecedorController controller) -> {
+		loadView("/gui/FornecedorList.fxml", (FornecedorListController controller) -> {
 			controller.setFornecedorService(new FornecedorService());
 			controller.updateTableView();
 		});
