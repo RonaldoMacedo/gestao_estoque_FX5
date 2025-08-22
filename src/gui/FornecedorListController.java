@@ -34,24 +34,16 @@ import model.services.FornecedorService;
 
 public class FornecedorListController implements Initializable, DataChangeListener {
 	
+	//************************************************************************************************************************************************************
+	
 	private FornecedorService service;
 	
 	public void setFornecedorService(FornecedorService service) {
 		this.service = service;
 	}
-	
-	private ObservableList<Fornecedor> obsList;
-	
-	public void updateTableView() {
-		if(service == null) {
-			throw new IllegalStateException("Service was null");
-		}
-		List<Fornecedor> list = service.findAll();
-		obsList = FXCollections.observableArrayList(list);
-		tableViewFornecedor.setItems(obsList);
-		initEditButtons();
-	}
 
+	//************************************************************************************************************************************************************
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initializeNodes();
@@ -70,10 +62,24 @@ public class FornecedorListController implements Initializable, DataChangeListen
 		tableViewFornecedor.prefHeightProperty().bind(stage.heightProperty());
 	}
 
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private TableView<Fornecedor> tableViewFornecedor;
+	
+	private ObservableList<Fornecedor> obsList;
+	
+	public void updateTableView() {
+		if(service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		List<Fornecedor> list = service.findAll();
+		obsList = FXCollections.observableArrayList(list);
+		tableViewFornecedor.setItems(obsList);
+		initEditButtons();
+	}
+	
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private TableColumn<Fornecedor, Integer> tableColumnIdFornecedor;

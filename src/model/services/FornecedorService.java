@@ -10,7 +10,6 @@ public class FornecedorService {
 	
 	private FornecedorDao dao = DaoFactory.createFornecedorDao();
 	
-	// MOCK
 	public List<Fornecedor> findAll() {
 		return dao.findAll();
 	}
