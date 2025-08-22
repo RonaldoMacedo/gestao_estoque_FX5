@@ -34,7 +34,7 @@ public class FornecedorFormController implements Initializable {
 		this.entity = entity;
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	private FornecedorService service;
 	
@@ -42,13 +42,15 @@ public class FornecedorFormController implements Initializable {
 		this.service = service;
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 	
 	public void subscribeDataChangeListener(DataChangeListener listener) {
 		dataChangeListeners.add(listener);
 	}
+	
+	//************************************************************************************************************************************************************
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -63,7 +65,7 @@ public class FornecedorFormController implements Initializable {
 		Constraints.setTextFieldMaxLength(txtCNPJ, 18);
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private TextField txtIdFornecedor;
@@ -83,7 +85,7 @@ public class FornecedorFormController implements Initializable {
 	@FXML
 	private TextField txtSituacao;
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 
 	@FXML
 	private Label lblErroRazaoSocial;
@@ -107,7 +109,7 @@ public class FornecedorFormController implements Initializable {
 		}
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private Button btSalvar;
@@ -146,7 +148,6 @@ public class FornecedorFormController implements Initializable {
 		
 		ValidationException exception = new ValidationException("Validation exception");
 		
-		obj.setIdFornecedor(Utils.tryParseToInt(txtIdFornecedor.getText()));
 		
 		if(txtRazaoSocial.getText() == null || txtRazaoSocial.getText().trim().equals("")) {
 			exception.addError("razaoSocial", "Campo obrigatório");
@@ -163,8 +164,6 @@ public class FornecedorFormController implements Initializable {
 		}
 		obj.setCnpj(txtCNPJ.getText());
 
-		obj.setDataCadastro(new Date());
-
 		obj.setSituacao(Situacao.valueOf(txtSituacao.getText()));
 		
 		if(exception.getErrors().size() > 0) {
@@ -172,6 +171,8 @@ public class FornecedorFormController implements Initializable {
 		}
 		return obj;
 	}
+	
+	//************************************************************************************************************************************************************
 
 	@FXML
 	private Button btCancelar;
@@ -181,7 +182,7 @@ public class FornecedorFormController implements Initializable {
 		Utils.currentStage(event).close();
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	public void updateFormData() {
 		if(entity == null) {
