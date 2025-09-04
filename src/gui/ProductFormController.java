@@ -156,7 +156,7 @@ public class ProductFormController implements Initializable {
 		txtCodigo.setText(String.valueOf(entity.getIdProduto()));
 		txtDescricaoInterna.setText(entity.getDescricaoInterna());
 		if(entity.getDataCadastro() != null) {
-			txtDataDoCadastro.setText(String.valueOf(LocalDateTime.ofInstant(entity.getDataCadastro().toInstant(), ZoneId.systemDefault())));
+			txtDataDoCadastro.setText(String.valueOf(LocalDateTime.ofInstant(entity.getDataCadastro().toInstant(null), ZoneId.systemDefault())));
 		}
 		txtGrupo.setText(String.valueOf(entity.getGrupo()));
 		txtSituacao.setText(String.valueOf(entity.getSituacao()));

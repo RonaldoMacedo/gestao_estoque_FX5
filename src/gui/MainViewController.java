@@ -16,9 +16,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import model.services.FornecedorService;
-import model.services.ItemService;
-import model.services.MarcaService;
 import model.services.ProductService;
 
 public class MainViewController implements Initializable {
@@ -49,9 +46,7 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	public void onMenuItemListarItensAction() {
-		loadView("/gui/ItemList.fxml", (ItemListController controller) -> {
-			controller.setItemService(new ItemService());
-			controller.updateTableView();
+		loadView("/gui/ItemList.fxml", x -> {
 		});
 	}
 	
@@ -62,9 +57,7 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	public void onMenuItemListarMarcasAction() {
-		loadView("/gui/MarcaList.fxml", (MarcaListController controller) -> {
-			controller.setMarcaService(new MarcaService());
-			controller.updateTableView();
+		loadView("/gui/MarcaList.fxml", x -> {
 		});
 	}
 	
@@ -75,9 +68,7 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemListarFornecedoresAction() {
-		loadView("/gui/FornecedorList.fxml", (FornecedorListController controller) -> {
-			controller.setFornecedorService(new FornecedorService());
-			controller.updateTableView();
+		loadView("/gui/FornecedorList.fxml", x -> {
 		});
 	}
 
