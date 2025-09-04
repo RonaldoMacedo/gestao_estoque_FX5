@@ -1,10 +1,7 @@
 package gui;
 
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -31,12 +28,17 @@ import model.services.ProductService;
 public class ProductFormController implements Initializable {
 	
 	private Product entity;
-	private ProductService service;
-	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 	
 	public void setProduct(Product entity) {
 		this.entity = entity;
 	}
+	
+	//************************************************************************************************************************************************************
+	
+	private ProductService service;
+	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+	
+	
 	
 	public void setProductService(ProductService service) {
 		this.service = service;
@@ -52,7 +54,7 @@ public class ProductFormController implements Initializable {
 		
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private TextField txtCodigo;
@@ -61,7 +63,7 @@ public class ProductFormController implements Initializable {
 	private TextField txtDescricaoInterna;
 	
 	@FXML
-	private TextField txtDataDoCadastro;
+	private TextField txtDataCadastro;
 	
 	@FXML
 	private TextField txtGrupo;
@@ -69,7 +71,10 @@ public class ProductFormController implements Initializable {
 	@FXML
 	private TextField txtSituacao;
 	
-	//*************************************************************************************************************************************************************
+	@FXML
+	private TextField txtSaldo;
+	
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private Label lblErro;
@@ -81,7 +86,7 @@ public class ProductFormController implements Initializable {
 		}
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 	
 	@FXML
 	private Button btSalvar;
@@ -142,7 +147,7 @@ public class ProductFormController implements Initializable {
 		Utils.currentStage(event).close();
 	}
 	
-	//*************************************************************************************************************************************************************
+	//************************************************************************************************************************************************************
 
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtCodigo);
@@ -155,11 +160,11 @@ public class ProductFormController implements Initializable {
 		}
 		txtCodigo.setText(String.valueOf(entity.getIdProduto()));
 		txtDescricaoInterna.setText(entity.getDescricaoInterna());
-		if(entity.getDataCadastro() != null) {
-			txtDataDoCadastro.setText(String.valueOf(LocalDateTime.ofInstant(entity.getDataCadastro().toInstant(), ZoneId.systemDefault())));
-		}
+		txtDataCadastro.setText(String.valueOf(entity.getDataCadastro()));
 		txtGrupo.setText(String.valueOf(entity.getGrupo()));
 		txtSituacao.setText(String.valueOf(entity.getSituacao()));
+		txtSaldo.setText(String.valueOf(entity.getSaldo()));
+		
 	}
 	
 }

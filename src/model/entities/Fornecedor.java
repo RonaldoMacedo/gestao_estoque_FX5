@@ -45,11 +45,11 @@ public class Fornecedor {
 		return cnpj;
 	}
 
-	public LocalDateTime getDataCadastro() {
+	public LocalDateTime getDataCadastro(LocalDateTime localDateTime) {
 		return dataCadastro;
 	}
 
-	public Situacao getSituacao() {
+	public Situacao getSituacao(Situacao ativo) {
 		return situacao;
 	}
 

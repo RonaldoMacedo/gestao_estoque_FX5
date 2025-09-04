@@ -1,7 +1,7 @@
 package gui;
 
 import java.net.URL;
-
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +40,21 @@ public class FornecedorFormController implements Initializable {
 	
 	public void setFornecedorService(FornecedorService service) {
 		this.service = service;
+	}
+	
+	//************************************************************************************************************************************************************
+	
+	public void updateFormData() {
+		if(entity == null) {
+			throw new IllegalStateException("Entity was null");
+		}
+		txtIdFornecedor.setText(String.valueOf(entity.getIdFornecedor()));
+		txtRazaoSocial.setText(entity.getRazaoSocial());
+		txtApelido.setText(entity.getApelido());
+		txtCNPJ.setText(entity.getCnpj());
+		txtDataCadastro.setText(String.valueOf(entity.getDataCadastro(LocalDateTime.now())));
+		txtSituacao.setText(String.valueOf(entity.getSituacao(Situacao.valueOf("Ativo"))));
+		
 	}
 	
 	//************************************************************************************************************************************************************
@@ -184,17 +199,6 @@ public class FornecedorFormController implements Initializable {
 	
 	//************************************************************************************************************************************************************
 	
-	public void updateFormData() {
-		if(entity == null) {
-			throw new IllegalStateException("Entity was null");
-		}
-		txtIdFornecedor.setText(String.valueOf(entity.getIdFornecedor()));
-		txtRazaoSocial.setText(entity.getRazaoSocial());
-		txtApelido.setText(entity.getApelido());
-		txtCNPJ.setText(entity.getCnpj());
-		txtDataCadastro.setText(String.valueOf(entity.getDataCadastro()));
-		txtSituacao.setText(String.valueOf(entity.getSituacao()));
-	}
 }
 
 	
